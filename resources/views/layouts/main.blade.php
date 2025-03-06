@@ -15,16 +15,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current" />
-                </a>
-            </div>
+        <div class="min-h-screen max-w-7xl mx-auto">
+            @include('frontend.layouts.search')
+            @include('frontend.layouts.navigation')
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg">
+            <!-- Page Content -->
+            <main>
                 {{ $slot }}
-            </div>
+            </main>
         </div>
     </body>
 </html>
