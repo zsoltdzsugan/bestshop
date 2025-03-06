@@ -69,13 +69,13 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
     ```sh
     cp .env.example .env
     ```
-3. **Generate the application key**  
-    ```sh
-    ./vendor/bin/sail artisan key:generate
-    ```
-4. **Start Laravel Sail**  
+3. **Start Laravel Sail**  
     ```sh
     ./vendor/bin/sail up -d
+    ```
+4. **Generate the application key**  
+    ```sh
+    ./vendor/bin/sail artisan key:generate
     ```
 5. **Run migrations and seed database**  
     ```sh
