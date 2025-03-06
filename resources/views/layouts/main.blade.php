@@ -15,12 +15,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen max-w-7xl mx-auto">
+        <div class="min-h-screen mx-auto min-w-screen">
             @include('frontend.layouts.search')
             @include('frontend.layouts.navigation')
 
             <!-- Page Content -->
-            <main>
+            <main class="max-w-7xl mx-auto">
                 {{ $slot }}
             </main>
         </div>
