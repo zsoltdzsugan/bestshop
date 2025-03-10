@@ -17,7 +17,8 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
 - **Product Management**: Add, edit, and delete products with images and descriptions.  
 - **Shopping Cart**: Add items to the cart and manage quantities.  
 - **Order Processing**: Checkout system with order tracking.  
-- **Admin Panel**: Manage users, products, and orders.  
+- **Admin Panel**: Manage users, vendors, products, and orders.
+- **Vendor Panel**: Manage vendor products, images, banners etc. 
 - **Responsive UI**: A modern and mobile-friendly interface using Tailwind CSS & Alpine.js.  
 
 ## 🛠️ Tech Stack
