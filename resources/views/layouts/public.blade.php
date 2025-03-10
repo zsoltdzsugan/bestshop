@@ -10,6 +10,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a6bb007fc2.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,6 +25,7 @@
             <main class="max-w-7xl mx-auto pl-1">
                 {{ $slot }}
             </main>
+            @include('public.layouts.footer')
         </div>
     </body>
 </html>
