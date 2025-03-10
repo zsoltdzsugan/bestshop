@@ -22,7 +22,7 @@
             @include('public.layouts.navigation')
 
             <!-- Page Content -->
-            <main class="max-w-7xl mx-auto pl-1">
+            <main class="max-w-7xl mx-auto">
                 {{ $slot }}
             </main>
             @include('public.layouts.footer')
