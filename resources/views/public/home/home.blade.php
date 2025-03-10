@@ -130,7 +130,7 @@
                 "
                 class="relative w-full bg-gray-900 container-block rounded-md"
                 >
-                <div class="relative w-full py-3 mx-auto overflow-hidden text-lg italic tracking-wide text-white uppercase bg-gray-900 max-w-7xl sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl rounded-md">
+                <div class="relative w-full py-3 mx-auto overflow-hidden text-lg italic tracking-wide text-white uppercase bg-slate-900 max-w-7xl sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl rounded-md">
                     <div class="absolute left-0 z-20 w-40 h-full bg-gradient-to-r from-gray-900 to-transparent"></div>
                     <div class="absolute right-0 z-20 w-40 h-full bg-gradient-to-l from-gray-900 to-transparent"></div>
                     <div x-ref="content" class="flex animate-marquee">
@@ -172,9 +172,55 @@
             </div>
         </section>
 
-        <section>
+        <section id="information" class="">
         <!-- shipping support guarantee online paymnt -->
+        <div class="flex w-full items-center gap-8 mt-16">
+            <div class="border rounded-md shadow-md w-full text-center flex flex-col justify-center items-center">
+                <div class="bg-blue-500 rounded-full flex items-center justify-center size-16 -translate-y-8">
+                    <span class="material-symbols-outlined text-gray-100 large-icon">
+                        local_shipping
+                    </span>
+                </div>
+                <div class="pb-4 -mt-4 flex flex-col gap-2">
+                    <p class="text-pretty text-bold text-xl">Free Worldwide Shipping</p>
+                    <p class="text-md">Free shipping cost for any country</p>
+                </div>
+            </div>
+            <div class="border rounded-md shadow-md w-full text-center flex flex-col justify-center items-center">
+                <div class="bg-blue-500 rounded-full flex items-center justify-center size-16 -translate-y-8">
+                    <span class="material-symbols-outlined text-gray-100 large-icon">
+                        support_agent
+                    </span>
+                </div>
+                <div class="pb-4 -mt-4 flex flex-col gap-2">
+                    <p class="text-pretty text-bold text-xl">24/7 Customer Support</p>
+                    <p class="text-md">Fast and Friendly support</p>
+                </div>
+            </div>
+            <div class="border rounded-md shadow-md w-full text-center flex flex-col justify-center items-center">
+                <div class="bg-blue-500 rounded-full flex items-center justify-center size-16 -translate-y-8">
+                    <span class="material-symbols-outlined text-gray-100 large-icon">
+                        sync_alt
+                    </span>
+                </div>
+                <div class="pb-4 -mt-4 flex flex-col gap-2">
+                    <p class="text-pretty text-bold text-xl">Money Back Guarantee</p>
+                    <p class="text-md">We return money within 30 days</p>
+                </div>
+            </div>
+            <div class="border rounded-md shadow-md w-full text-center flex flex-col justify-center items-center">
+                <div class="bg-blue-500 rounded-full flex items-center justify-center size-16 -translate-y-8">
+                    <span class="material-symbols-outlined text-gray-100 large-icon">
+                        credit_card
+                    </span>
+                </div>
+                <div class="pb-4 -mt-4 flex flex-col gap-2">
+                    <p class="text-pretty text-bold text-xl">Secure Online Payment</p>
+                    <p class="text-md">Pay with credit/debit card with ease</p>
+                </div>
+            </div>
+
+        </div>
         </section>
     </div>
-    <!-- footer -->
 </x-public-layout>
