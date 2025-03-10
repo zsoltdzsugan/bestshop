@@ -91,8 +91,7 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
     ```
 
 ### Environment Variables
-
-    ```sh
+```sh
     APP_NAME=Laravel
     APP_URL=http://localhost
     
@@ -102,7 +101,7 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
     DB_DATABASE=bestshop
     DB_USERNAME=sail
     DB_PASSWORD=password
-    ```
+```
 
 ## 📜 License
 This project is open-source and available under the MIT License.
