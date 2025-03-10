@@ -1,8 +1,9 @@
 <x-public-layout>
-    <div class="max-w-7xl mx-auto shadow-sm rounded-md space-y-6">
+    <div class="max-w-7xl mx-auto shadow-sm rounded-md space-y-12">
         <section id="carousel">
             <x-slides-carousel :slides="$slides" />
         </section>
+
         <section id="flash-sale" class="space-y-6">
             <div class="relative flex border-outline border-gray-900 bg-surface-alt p-4 text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark border">
                 <div class="mx-auto flex flex-wrap items-center gap-2 px-6">
@@ -44,7 +45,7 @@
         </section>
 
         <section id="top-categories">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center pb-6">
                 <h3 class="text-pretty text-2xl font-medium">Top Categories Of The Month</h3>
                 <ul class="flex gap-4 text-pretty">
                     <li><a href="#" class="px-2.5 py-1 bg-blue-500 rounded-md shadow text-white">Tech</a>

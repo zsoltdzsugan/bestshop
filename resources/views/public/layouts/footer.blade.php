@@ -1,5 +1,5 @@
 <!-- footer -->
-<section class="min-w-screen h-[40vh] bg-slate-900 mt-8 pl-1">
+<section class="min-w-screen h-[40vh] bg-slate-900 mt-12">
     <div class="flex justify-center h-full gap-8 max-w-7xl mx-auto">
         <div class="w-full h-full justify-center p-6 gap-6 text-gray-100 flex flex-col">
             <x-application-logo />
@@ -55,7 +55,7 @@
             <img src="{{ asset('storage/home/cards/credit.png') }}" class="h-auto w-36">
         </div>
     </div>
-    <div class="min-w-screen bg-slate-700 text-gray-100 text-center -ml-1 py-2">
+    <div class="min-w-screen bg-slate-700 text-gray-100 text-center py-2">
         <p>Copyright &copy; 2025 BestShop. All Rights Reserved.</p>
     </div>
 </section>

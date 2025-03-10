@@ -1,5 +1,5 @@
-<div class="bg-gray-900">
-    <header class="pl-1 max-w-7xl mx-auto">
+<div class="bg-gray-900 mb-12">
+    <header class="max-w-7xl mx-auto">
       <div class="mx-auto flex h-10 max-w-screen-xl items-center gap-8">
         <button
           class="block bg-blue-500/75 p-2.5 text-gray-900 transition hover:text-gray-600/75"
@@ -47,15 +47,31 @@
           </nav>
 
           <div class="flex items-center gap-4">
-            <div class="sm:flex sm:gap-4">
-              <x-nav-link :href="route('login')">
-                Login
-              </x-nav-link>
+            @if (Route::has('login'))
+                <div class="sm:flex sm:gap-4">
+                    @auth
+                        <x-nav-link :href="route('dashboard')">
+                        Dashboard
+                        </x-nav-link>
 
-              <x-nav-link :href="route('register')">
-                Register
-              </x-nav-link>
-            </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout
+                            </x-nav-link>
+                        </form>
+                    @else
+                        <x-nav-link :href="route('login')">
+                        Login
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('register')">
+                        Register
+                        </x-nav-link>
+                    @endauth
+                </div>
+            @endif
 
             <button
               class="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
