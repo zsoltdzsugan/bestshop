@@ -10,25 +10,24 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a6bb007fc2.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen flex">
-            <!-- Sidebar (Left Navigation) -->
-            @include('admin.layouts.navigation')
+            @include('admin.layouts.navigation.sidebar')
 
             <!-- Main Content Area -->
             <div class="flex-1 flex flex-col min-h-screen w-full overflow-y-auto bg-surface dark:bg-surface-dark">
-                <!-- Top Navbar -->
-                @include('admin.layouts.top-navigation')
+                @include('admin.layouts.navigation.topbar')
 
-                <!-- Page Content -->
                 <main class="flex-1 p-4 overflow-y-auto">
                     @isset($header)
-                        <header class="shadow">
-                            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        <header class="shadow mb-6 rounded-md">
+                            <div class="max-w-full mx-auto py-6 px-4">
                                 {{ $header }}
                             </div>
                         </header>
