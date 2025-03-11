@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\DataTables\SliderDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\SliderStoreRequest;
 use App\Models\Slider;
@@ -23,9 +24,9 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(SliderDataTable $dataTable): Mixed
     {
-        return view('admin.slider.index');
+        return $dataTable->render('admin.slider.index');
     }
 
     /**
@@ -65,24 +66,43 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('admin.slider.edit', compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SliderStoreRequest $request, string $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        $slider = Slider::findOrFail($id);
+
+        if ($request->hasFile('banner')) {
+            $this->imageService->delete($slider->banner);
+            $data['banner'] = $this->imageService->upload($request->file('banner'), 'sliders');
+        }
+
+        $slider->fill($data);
+        $slider->save();
+
+        return Redirect::route('admin.slider.index')->with('status', 'slider-updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $slider = Slider::findOrFail($id);
+
+        $this->imageService->delete($slider->banner);
+        $slider->delete();
+
+
+        return Redirect::route('admin.slider.index')->with('status', 'slider-deleted');
     }
 }
