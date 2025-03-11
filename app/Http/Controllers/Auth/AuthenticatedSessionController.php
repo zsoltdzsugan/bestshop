@@ -28,13 +28,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $dashboard = match ($request->user()->role) {
+        $defaultView = match ($request->user()->role) {
             'admin' => 'admin.dashboard',
             'vendor' => 'vendor.dashboard',
             default => 'home',
         };
 
-        return redirect()->intended(route($dashboard, absolute: false));
+        return redirect()->intended(route($defaultView, absolute: false));
     }
 
     /**
@@ -42,12 +42,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $defaultView = match ($request->user()->role) {
+            'admin' => 'admin.login',
+            'vendor' => 'vendor.login',
+            default => 'home',
+        };
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->intended(route($defaultView, absolute: false));
     }
 }
