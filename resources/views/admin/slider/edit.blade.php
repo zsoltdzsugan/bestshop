@@ -18,14 +18,22 @@
                 @csrf
                 @method('patch')
 
-                <div>
-                    <x-input-label for="preview" :value="__('Preview')" />
-                        <img class="w-60" src="{{ asset('storage/' . $slider->banner) }}" />
-                    <x-input-error class="mt-2" :messages="$errors->get('preview')" />
+                <x-input-label>Preview</x-input-label>
+                <div class="flex gap-8">
+                    <div>
+                        <x-input-label :value="__('Old')" />
+                        <img class="w-60 max-h-60" name="old-preview" id="old-preview" src="{{ asset('storage/' . $slider->banner) }}" />
+                        <x-input-error class="mt-2" :messages="$errors->get('old-preview')" />
+                    </div>
+                    <div>
+                        <x-input-label :value="__('New')" />
+                        <img class="w-60 max-h-60" name="new-preview" id="new-preview" />
+                        <x-input-error class="mt-2" :messages="$errors->get('new-preview')" />
+                    </div>
                 </div>
                 <div>
                     <x-input-label for="banner" :value="__('Banner')" />
-                    <x-text-input id="banner" name="banner" type="file" class="mt-1 block w-full p-2" autofocus />
+                    <x-text-input id="banner" name="banner" type="file" class="mt-1 block w-full p-2" autofocus onchange="previewImage(event)"/>
                     <x-input-error class="mt-2" :messages="$errors->get('banner')" />
                 </div>
                 <div>
@@ -80,4 +88,25 @@
             </form>
         </section>
     </div>
+    <script>
+        function previewImage(event) {
+            // Get the file input and the preview element
+            const file = event.target.files[0];
+            const preview = document.getElementById('new-preview');
+
+            // Check if file is selected
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Show the new image preview and set the src to the selected file
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                };
+
+                // Read the file as a data URL to show it as a preview
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </x-admin-layout>

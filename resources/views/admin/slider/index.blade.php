@@ -12,7 +12,12 @@
         </x-primary-button>
     </div>
 
-    <div class="overflow-hidden overflow-x-auto p-4 shadow-md rounded-md border border-outline dark:border-outline-dark">
-        <!--table-->
+    <div class="overflow-hidden w-full px-4 overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
+        {{ $dataTable->table() }}
     </div>
+
+    @push('scripts')
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    @endpush
+
 </x-admin-layout>
