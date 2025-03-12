@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\SliderStoreRequest;
 use App\Models\Slider;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
