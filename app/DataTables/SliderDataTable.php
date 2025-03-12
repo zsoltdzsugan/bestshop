@@ -91,7 +91,7 @@ class SliderDataTable extends DataTable
             Column::make('starting_price'),
             Column::make('btn_url')->width(150),
             Column::make('serial'),
-            Column::make('status'),
+            Column::make('status')->addClass('dt-type-status'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

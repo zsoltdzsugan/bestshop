@@ -16,8 +16,8 @@
         {{ $dataTable->table() }}
     </div>
 
-    @push('scripts')
+    @section('scripts')
         {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-    @endpush
+    @endsection
 
 </x-admin-layout>

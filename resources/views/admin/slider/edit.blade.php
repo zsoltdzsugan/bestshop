@@ -90,21 +90,15 @@
     </div>
     <script>
         function previewImage(event) {
-            // Get the file input and the preview element
             const file = event.target.files[0];
             const preview = document.getElementById('new-preview');
 
-            // Check if file is selected
             if (file) {
                 const reader = new FileReader();
-
                 reader.onload = function(e) {
-                    // Show the new image preview and set the src to the selected file
                     preview.src = e.target.result;
                     preview.classList.remove('hidden');
                 };
-
-                // Read the file as a data URL to show it as a preview
                 reader.readAsDataURL(file);
             }
         }

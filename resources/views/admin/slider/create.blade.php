@@ -18,8 +18,13 @@
                 @csrf
 
                 <div>
+                    <x-input-label :value="__('Preview')" />
+                    <img class="w-60 max-h-60" name="new-preview" id="new-preview" />
+                    <x-input-error class="mt-2" :messages="$errors->get('new-preview')" />
+                </div>
+                <div>
                     <x-input-label for="banner" :value="__('Banner')" />
-                    <x-text-input id="banner" name="banner" type="file" class="mt-1 block w-full p-2" autofocus />
+                    <x-text-input id="banner" name="banner" type="file" class="mt-1 block w-full p-2" autofocus onchange="previewImage(event)"/>
                     <x-input-error class="mt-2" :messages="$errors->get('banner')" />
                 </div>
                 <div>
@@ -74,4 +79,19 @@
             </form>
         </section>
     </div>
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('new-preview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </x-admin-layout>
