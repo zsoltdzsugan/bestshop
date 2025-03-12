@@ -103,6 +103,23 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
     DB_USERNAME=sail
     DB_PASSWORD=password
 ```
+### Seeded Test Users
+```sh
+    name: Test Admin
+    username: admin
+    email: admin@test.com
+    password: password
+
+    name: Test Vendor
+    username: vendor
+    email: vendor@test.com
+    password: password
+
+    name: Test User
+    username: user
+    email: user@test.com
+    password: password
+```
 
 ## 📜 License
 This project is open-source and available under the MIT License.
