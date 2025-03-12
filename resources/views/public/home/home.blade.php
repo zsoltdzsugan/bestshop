@@ -1,7 +1,7 @@
 <x-public-layout>
     <div class="max-w-7xl mx-auto shadow-sm rounded-md space-y-12">
         <section id="carousel">
-            <x-slides-carousel :slides="$slides" />
+            <x-slides-carousel :slides="$sliders" />
         </section>
 
         <section id="flash-sale" class="space-y-6">
