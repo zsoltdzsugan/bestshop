@@ -28,7 +28,6 @@
         </span>
     </div>
 
-    <!-- Hover Card Content -->
     <div x-show="hoverCardHovered" class="absolute top-0 w-[365px] max-w-lg mt-5 z-30 translate-x-1.5 translate-y-3 left-1/2" x-cloak>
         <div x-show="hoverCardHovered" class="w-full h-auto bg-white space-x-3 p-5 flex items-start rounded-md shadow-sm border border-neutral-200/70" x-transition>
 
