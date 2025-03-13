@@ -43,7 +43,7 @@ class Slider extends Model
             'starting_price' => 'integer',
             'btn_url' => 'string',
             'serial' => 'integer',
-            'status' => 'string',
+            'status' => 'boolean',
         ];
     }
 }
