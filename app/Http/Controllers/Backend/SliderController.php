@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\SliderStoreRequest;
 use App\Models\Slider;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class SliderController extends Controller
@@ -51,7 +50,7 @@ class SliderController extends Controller
         $slider->fill($data);
         $slider->save();
 
-        return Redirect::route('admin.slider.index')->with('status', 'slider-created');
+        return redirect()->route('admin.slider.index')->with('status', 'slider-created');
     }
 
     /**
@@ -88,7 +87,7 @@ class SliderController extends Controller
         $slider->fill($data);
         $slider->save();
 
-        return Redirect::route('admin.slider.index')->with('status', 'slider-updated');
+        return redirect()->route('admin.slider.index')->with('status', 'slider-updated');
     }
 
     /**
@@ -102,6 +101,6 @@ class SliderController extends Controller
         $slider->delete();
 
 
-        return Redirect::route('admin.slider.index')->with('status', 'slider-deleted');
+        return redirect()->route('admin.slider.index')->with('status', 'slider-deleted');
     }
 }

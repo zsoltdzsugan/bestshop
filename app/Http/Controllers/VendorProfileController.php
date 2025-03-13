@@ -7,7 +7,6 @@ use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class VendorProfileController extends Controller
@@ -48,7 +47,7 @@ class VendorProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('vendor.profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('vendor.profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -73,6 +72,6 @@ class VendorProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return redirect()->to('/');
     }
 }

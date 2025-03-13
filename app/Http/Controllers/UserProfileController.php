@@ -7,7 +7,6 @@ use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class UserProfileController extends Controller
@@ -49,7 +48,7 @@ class UserProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('user.profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('user.profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -74,6 +73,6 @@ class UserProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return redirect()->to('/');
     }
 }

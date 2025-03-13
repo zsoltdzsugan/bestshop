@@ -6,12 +6,10 @@ use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CategoryStoreRequest;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Yajra\DataTables\DataTables;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -43,7 +41,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->save();
 
-        return Redirect::route('admin.category.index')->with('status', 'category-created');
+        return redirect()->route('admin.category.index')->with('status', 'category-created');
     }
 
     /**
@@ -76,17 +74,21 @@ class CategoryController extends Controller
         $category->fill($data);
         $category->save();
 
-        return Redirect::route('admin.category.index')->with('status', 'category-updated');
+        return redirect()->route('admin.category.index')->with('status', 'category-updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(string $id): Mixed
     {
         $category = Category::findOrFail($id);
+        $subCategory = Category::where('category_id', $category->id)->count();
+        if ($subCategory > 0) {
+            return response(['status' => 'error', 'message' => 'This Category has child item(s)']);
+        }
         $category->delete();
 
-        return Redirect::route('admin.category.index')->with('status', 'category-deleted');
+        return redirect()->route('admin.category.index')->with('status', 'category-deleted');
     }
 }
