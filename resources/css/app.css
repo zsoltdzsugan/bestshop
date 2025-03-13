@@ -282,11 +282,13 @@
         /* Dark Theme */
         --color-surface-dark: var(--color-stone-950);
         --color-surface-dark-alt: var(--color-stone-900);
+        --color-surface-dark-even: var(--color-stone-800);
+        --color-surface-dark-odd: var(--color-stone-700);
         --color-on-surface-dark: var(--color-stone-300);
         --color-on-surface-dark-strong: var(--color-white);
         --color-primary-dark: var(--color-amber-400);
         --color-on-primary-dark: var(--color-black);
-        --color-secondary-dark: var(--color-stone-700);
+        --color-secondary-dark: var(--color-slate-700);
         --color-on-secondary-dark: var(--color-white);
         --color-outline-dark: var(--color-stone-700);
         --color-outline-dark-strong: var(--color-blue-500);
@@ -333,6 +335,150 @@
 
 .information-icon {
     font-size: 16px;
+}
+
+/**TODO: need js logic to add/remove dark class on html tag (see: admin.blade.php) */
+
+/** DATATABLE STYLE */
+/** datatable searchbar  */
+#dt-search-0 {
+    border: 1px solid var(--color-outline);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-radius);
+    margin-left: 0.5rem;
+    background-color: var(--color-surface-alt);
+    color: var(--color-on-surface);
+    transition: all 0.2s ease;
+}
+
+#dt-search-0::placeholder {
+    color: var(--color-outline);
+}
+
+#dt-search-0:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(var(--color-primary), 0.5);
+}
+
+#dt-search-0:focus::placeholder {
+    color: var(--color-outline-dark);
+}
+
+.dark #dt-search-0 {
+    background-color: var(--color-surface-dark-alt);
+    border-color: var(--color-outline-dark);
+    color: var(--color-on-surface-dark);
+}
+
+.dark #dt-search-0::placeholder {
+    color: var(--color-outline);
+}
+
+.dark #dt-search-0:focus {
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 0 0 1px rgba(var(--color-primary-dark), 0.5);
+}
+
+.dark #dt-search-0:focus::placeholder {
+    color: var(--color-outline);
+}
+
+/** datatable select menu  */
+#dt-length-0 {
+    border: 1px solid var(--color-outline);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-radius);
+    background-color: var(--color-surface-alt);
+    color: var(--color-on-surface);
+}
+
+#dt-length-0:focus {
+    border-color: var(--color-primary);
+    ring: 0px solid var(--color-primary);
+    border-radius: var(--radius-radius);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.5);
+}
+
+.dark #dt-length-0 {
+    border: 1px solid var(--color-outline-dark);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-radius);
+    background-color: var(--color-surface-dark-alt);
+    color: var(--color-on-surface-dark);
+}
+
+.dark #dt-length-0:focus {
+    border-color: var(--color-primary-dark);
+    ring: 1px solid var(--color-primary-dark);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-dark), 0.5);
+}
+
+.dark #dt-length-0:hover option[value="100"] {
+    background-color: rgba(var(--color-primary-dark), 0.5);
+}
+
+/** datatable pagination */
+.dt-paging .pagination a {
+    background-color: var(--color-surface-alt);
+    border-radius: var(--radius-radius);
+    border: 1px solid var(--color-outline);
+}
+
+.dark .dt-paging .pagination a {
+    background-color: var(--color-surface-dark-alt);
+    border: 1px solid var(--color-outline-dark);
+}
+
+.dt-paging .pagination a:hover {
+    background-color: var(--color-surface);
+}
+
+.dark .dt-paging .pagination a:hover {
+    background-color: var(--color-surface-dark);
+}
+
+.dt-paging .pagination a[aria-current="page"] {
+    background-color: var(--color-surface);
+}
+
+.dark .dt-paging .pagination a[aria-current="page"] {
+    background-color: var(--color-surface-dark);
+}
+
+.dt-paging .pagination a[aria-current="page"]:focus {
+    outline: 1px solid var(--color-primary);
+}
+
+.dark .dt-paging .pagination a[aria-current="page"]:focus {
+    outline: 1px solid var(--color-primary-dark);
+}
+
+/** datatable general */
+table.dataTable th {
+    background-color: var(--color-surface);
+}
+
+.dark table.dataTable th {
+    background-color: var(--color-surface-dark-alt);
+}
+
+table.dataTable tr:nth-child(odd) {
+    background-color: var(--color-surface);
+}
+
+table.dataTable tr:nth-child(even) {
+    background-color: var(--color-surface-alt);
+}
+
+.dark table.dataTable tr:nth-child(odd) {
+    background-color: var(--color-surface-dark-odd);
+}
+
+.dark table.dataTable tr:nth-child(even) {
+    background-color: var(--color-surface-dark-even);
 }
 
 table.dataTable td {
