@@ -1,8 +1,8 @@
 <div class="flex space-x-2">
     <!-- Edit Button -->
-    <x-secondary-button :href="route('admin.child-category.edit', $childCategory->id)">
+    <x-info-button :href="route('admin.child-category.edit', $childCategory->id)">
         <i class="fa-solid fa-pen-to-square"></i>
-    </x-secondary-button>
+    </x-info-button>
 
     <!-- Delete Button -->
     <x-danger-button

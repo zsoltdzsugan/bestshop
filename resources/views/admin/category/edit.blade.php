@@ -47,12 +47,12 @@
                         </x-hover-card>
                     </div>
 
-                    <x-text-input id="icon" name="icon" type="text" class="mt-1 block w-full" value="{{ old('icon') }}" onchange="previewIcon(event)" autocomplete/>
+                    <x-text-input id="icon" name="icon" type="text" class="mt-1 block w-full" value="{{ old('icon', $category->icon) }}" onchange="previewIcon(event)" autocomplete/>
                     <x-input-error class="mt-2" :messages="$errors->get('icon')" />
                 </div>
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name') }}" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ old('name', $category->name) }}" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div>

@@ -1,8 +1,8 @@
 <div class="flex space-x-2">
     <!-- Edit Button -->
-    <x-secondary-button :href="route('admin.slider.edit', $slider->id)">
+    <x-info-button :classType="'info'" :href="route('admin.slider.edit', $slider->id)">
         <i class="fa-solid fa-pen-to-square"></i>
-    </x-secondary-button>
+    </x-info-button>
 
     <!-- Delete Button -->
     <x-danger-button

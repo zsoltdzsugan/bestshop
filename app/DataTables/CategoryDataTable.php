@@ -31,18 +31,12 @@ class CategoryDataTable extends DataTable
             })
             ->addColumn('status', function ($category) {
                 $statusIcon = $category->status == 1
-                    ? '<i class="fa-solid fa-circle" style="color: #48bb78;"></i>'
-                    : '<i class="fa-solid fa-circle"></i>';
+                    ? '<i class="fa-solid fa-circle text-success"></i>'
+                    : '<i class="fa-solid fa-circle text-surface-dark"></i>';
 
                 return $statusIcon;
             })
-            ->addColumn('created_at', function ($category) {
-                return Carbon::parse($category->created_at)->format('Y/m/d H:i');
-            })
-            ->addColumn('updated_at', function ($category) {
-                return Carbon::parse($category->updated_at)->format('Y/m/d H:i');
-            })
-            ->rawColumns(['icon', 'status', 'created_at', 'updated_at', 'action'])
+            ->rawColumns(['icon', 'status', 'action'])
             ->setRowId('id');
     }
 
@@ -87,8 +81,6 @@ class CategoryDataTable extends DataTable
             Column::make('slug'),
             Column::make('name'),
             Column::make('status')->addClass('dt-type-status'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

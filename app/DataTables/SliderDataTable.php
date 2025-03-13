@@ -31,18 +31,12 @@ class SliderDataTable extends DataTable
             })
             ->addColumn('status', function ($slider) {
                 $statusIcon = $slider->status == 1
-                    ? '<i class="fa-solid fa-circle" style="color: #48bb78;"></i>'
-                    : '<i class="fa-solid fa-circle"></i>';
+                    ? '<i class="fa-solid fa-circle text-success"></i>'
+                    : '<i class="fa-solid fa-circle text-surface-dark"></i>';
 
                 return $statusIcon;
             })
-            ->addColumn('created_at', function ($slider) {
-                return Carbon::parse($slider->created_at)->format('Y/m/d H:i');
-            })
-            ->addColumn('updated_at', function ($slider) {
-                return Carbon::parse($slider->updated_at)->format('Y/m/d H:i');
-            })
-            ->rawColumns(['banner', 'status', 'created_at', 'updated_at', 'action'])
+            ->rawColumns(['banner', 'status', 'action'])
             ->setRowId('id');
     }
 
@@ -93,8 +87,6 @@ class SliderDataTable extends DataTable
             Column::make('btn_url')->width(150),
             Column::make('serial'),
             Column::make('status')->addClass('dt-type-status'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

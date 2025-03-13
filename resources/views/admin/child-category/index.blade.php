@@ -12,7 +12,7 @@
         </x-primary-button>
     </div>
 
-    <div class="overflow-hidden w-full px-4 pt-8 pb-4 overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
+    <div class="overflow-hidden w-full px-4 pt-8 pb-4 overflow-x-auto rounded-radius">
         {{ $dataTable->table() }}
     </div>
 
