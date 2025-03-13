@@ -62,6 +62,7 @@ class CategoryDataTable extends DataTable
         return $this->builder()
             ->setTableId('category-table')
             ->columns($this->getColumns())
+            ->addTableClass('bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark rounded-radius')
             ->minifiedAjax()
             ->orderBy(0)
             ->selectStyleSingle()
