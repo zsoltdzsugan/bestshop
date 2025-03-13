@@ -58,8 +58,8 @@
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
                     <select id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
+                        <option value="1" {{ old('status', $category->status) == 1 ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ old('status', $category->status) == 0 ? 'selected' : '' }}>Inactive</option>
                     </select>
                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                 </div>
@@ -82,12 +82,14 @@
             </form>
         </section>
     </div>
-    <script>
-        function previewIcon(event) {
-            const inputValue = event.target.value;
-            const preview = document.getElementById('new-preview');
+    @push('scripts')
+        <script>
+            function previewIcon(event) {
+                const inputValue = event.target.value;
+                const preview = document.getElementById('new-preview');
 
-            preview.textContent = inputValue;
-        }
-    </script>
+                preview.textContent = inputValue;
+            }
+        </script>
+    @endpush
 </x-admin-layout>

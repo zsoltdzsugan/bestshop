@@ -88,19 +88,21 @@
             </form>
         </section>
     </div>
-    <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('new-preview');
+    @push('scripts')
+        <script>
+            function previewImage(event) {
+                const file = event.target.files[0];
+                const preview = document.getElementById('new-preview');
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
-        }
-    </script>
+        </script>
+    @endpush
 </x-admin-layout>

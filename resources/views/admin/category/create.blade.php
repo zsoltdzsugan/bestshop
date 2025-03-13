@@ -71,12 +71,14 @@
             </form>
         </section>
     </div>
-    <script>
-        function previewIcon(event) {
-            const inputValue = event.target.value;
-            const preview = document.getElementById('new-preview');
+    @push('scripts')
+        <script>
+            function previewIcon(event) {
+                const inputValue = event.target.value;
+                const preview = document.getElementById('new-preview');
 
-            preview.textContent = inputValue;
-        }
-    </script>
+                preview.textContent = inputValue;
+            }
+        </script>
+    @endpush
 </x-admin-layout>
