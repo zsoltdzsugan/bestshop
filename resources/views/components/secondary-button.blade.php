@@ -1,11 +1,15 @@
 @props(['href' => null])
 
+@php
+    $classes = 'inline-flex items-center px-4 py-2 bg-secondary dark:bg-secondary-dark border border-outline dark:border-outline-dark rounded-radius font-semibold text-xs text-on-secondary dark:text-on-secondary-dark uppercase tracking-widest shadow-sm hover:bg-surface-alt dark:hover:bg-surface-dark-alt hover:border-secondary dark:hover:border-secondary-dark focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1 focus:ring-offset-primary dark:focus:ring-offset-primary-dark disabled:opacity-25 transition ease-in-out duration-150';
+@endphp
+
 @if ($href)
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => 'inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150']) }}>
+    <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
         {{ $slot }}
     </a>
 @else
-    <button {{ $attributes->merge(['type' => 'button', 'class' => 'inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150']) }}>
+    <button {{ $attributes->merge(['type' => 'button', 'class' => $classes]) }}>
         {{ $slot }}
     </button>
 @endif
