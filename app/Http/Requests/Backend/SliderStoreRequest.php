@@ -22,7 +22,7 @@ class SliderStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'banner' => ['nullable', 'image', 'max:2048'],
+            'banner' => ['nullable', 'file', 'image', 'max:2048'],
             'type' => ['string', 'max:200'],
             'title' => ['required', 'string', 'max:200'],
             'starting_price' => ['max:200'],
