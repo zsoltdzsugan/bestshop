@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-7xl mx-auto shadow-sm rounded-md space-y-12">
+    <div class="max-w-7xl mx-auto space-y-12">
         <section id="carousel">
             <x-slides-carousel :slides="$sliders" />
         </section>

@@ -1,5 +1,5 @@
 <!-- footer -->
-<section class="min-w-screen h-[40vh] bg-slate-900 mt-12">
+<section class="min-w-screen h-auto bg-on-surface mt-12">
     <div class="flex justify-center h-full gap-8 max-w-7xl mx-auto">
         <div class="w-full h-full justify-center p-6 gap-6 text-gray-100 flex flex-col">
             <x-application-logo />

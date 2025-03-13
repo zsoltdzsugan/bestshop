@@ -9,8 +9,8 @@
     </button>
 
     <!-- breadcrumbs  -->
-    <nav class="hidden md:inline-block text-sm font-medium text-on-surface dark:text-on-surface-dark" aria-label="breadcrumb">
-        <ol class="flex flex-wrap items-center gap-1">
+    <nav class="text-sm inline-flex text-on-surface dark:text-on-surface-dark" aria-label="breadcrumb">
+        <ol class="flex h-full flex-wrap items-center">
         <li class="flex items-center gap-1">
             <a href="#" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Dashboard</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" class="size-4" aria-hidden="true">
@@ -25,7 +25,7 @@
 
     <!-- Profile Menu  -->
     <div x-data="{ userDropdownIsOpen: false }" class="relative" x-on:keydown.esc.window="userDropdownIsOpen = false">
-        <x-dropdown>
+        <x-dropdown class="bg-surface text-on-surface dark:bg-surface-dark-alt dark:text-on-surface-dark">
             <x-slot name="trigger">
                 <button type="button" class="flex w-full items-center rounded-radius gap-2 p-2 text-left text-on-surface hover:bg-primary/5 hover:text-on-surface-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong dark:focus-visible:outline-primary-dark" x-bind:class="userDropdownIsOpen ? 'bg-primary/10 dark:bg-primary-dark/10' : ''" aria-haspopup="true" x-on:click="userDropdownIsOpen = ! userDropdownIsOpen" x-bind:aria-expanded="userDropdownIsOpen">
                     <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-7.webp" class="size-8 object-cover rounded-radius" alt="avatar" aria-hidden="true"/>
@@ -38,7 +38,7 @@
             </x-slot>
 
             <!-- menu -->
-            <div x-cloak x-show="userDropdownIsOpen" class="absolute top-14 right-0 z-20 h-fit w-48 border divide-y divide-outline border-outline bg-surface dark:divide-outline-dark dark:border-outline-dark dark:bg-surface-dark rounded-radius" role="menu" x-on:click.outside="userDropdownIsOpen = false" x-on:keydown.down.prevent="$focus.wrap().next()" x-on:keydown.up.prevent="$focus.wrap().previous()" x-transition="" x-trap="userDropdownIsOpen">
+            <div x-cloak x-show="userDropdownIsOpen" class="absolute top-14 right-0 z-20 h-fit w-48 border divide-y divide-outline border-outline bg-surface-alt dark:bg-surface-dark-alt dark:divide-outline-dark dark:border-outline-dark rounded-radius" role="menu" x-on:click.outside="userDropdownIsOpen = false" x-on:keydown.down.prevent="$focus.wrap().next()" x-on:keydown.up.prevent="$focus.wrap().previous()" x-transition="" x-trap="userDropdownIsOpen">
 
                 <x-slot name="content">
                     <div class="flex flex-col py-1.5">
