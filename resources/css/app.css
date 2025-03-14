@@ -274,8 +274,8 @@
         --color-on-surface-strong: var(--color-black);
         --color-primary: var(--color-amber-500);
         --color-on-primary: var(--color-black);
-        --color-secondary: var(--color-stone-900);
-        --color-on-secondary: var(--color-stone-50);
+        --color-secondary: var(--color-slate-700);
+        --color-on-secondary: var(--color-stone-300);
         --color-outline: var(--color-stone-300);
         --color-outline-strong: var(--color-blue-600);
 
@@ -288,8 +288,8 @@
         --color-on-surface-dark-strong: var(--color-white);
         --color-primary-dark: var(--color-amber-400);
         --color-on-primary-dark: var(--color-black);
-        --color-secondary-dark: var(--color-slate-700);
-        --color-on-secondary-dark: var(--color-white);
+        --color-secondary-dark: var(--color-slate-600);
+        --color-on-secondary-dark: var(--color-slate-200);
         --color-outline-dark: var(--color-stone-700);
         --color-outline-dark-strong: var(--color-blue-500);
 
@@ -323,6 +323,10 @@
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+}
+
+.xlarge-icon {
+    font-size: 48px;
 }
 
 .large-icon {
