@@ -12,20 +12,22 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a6bb007fc2.js" crossorigin="anonymous"></script>
+        @stack('styles')
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-surface">
-        <div class="min-h-screen mx-auto min-w-screen">
+    <body class="relative max-w-screen font-sans antialiased bg-surface-alt text-on-surface-alt dark:bg-surface-dark-alt dark:text-on-surface-dark-alt">
+        <div class="min-h-screen mx-auto w-full rounded-radius">
             @include('public.layouts.search')
             @include('public.layouts.navigation')
 
             <!-- Page Content -->
-            <main class="max-w-7xl mx-auto">
+            <main class="max-w-7xl flex flex-col space-y-12 my-12 mx-auto">
                 {{ $slot }}
             </main>
             @include('public.layouts.footer')
         </div>
+        @stack('scripts')
     </body>
 </html>
