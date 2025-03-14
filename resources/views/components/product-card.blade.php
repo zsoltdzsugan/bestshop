@@ -1,6 +1,6 @@
 @props(['product'])
 
-    <article class="group flex rounded-radius max-w-sm flex-col overflow-hidden border border-outline bg-surface-alt text-on-surface dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark">
+    <article class="group flex rounded-radius max-w-sm flex-col overflow-hidden border border-outline bg-surface text-on-surface dark:border-outline-dark dark:bg-surface-dark dark:text-on-surface-dark">
         <!-- Image -->
         <div class="h-44 md:h-64 overflow-hidden">
             <img :src="product.imgSrc" class="object-contain transition duration-700 ease-out group-hover:scale-105" :alt="product.imgAlt" />
@@ -11,7 +11,7 @@
             <div class="flex flex-col md:flex-row gap-4 md:gap-12 justify-between">
                 <!-- Title & Rating -->
                 <div class="flex flex-col">
-                    <h3 class="text-lg lg:text-xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong" aria-describedby="productDescription" x-text="product.name"></h3>
+                    <h3 class="sm:text-md lg:text-lg font-bold text-on-surface-strong dark:text-on-surface-dark-strong" aria-describedby="productDescription" x-text="product.name"></h3>
                     <!-- Rating -->
                     <div class="flex items-center gap-1">
                         <span class="sr-only">Rated 3 stars</span>

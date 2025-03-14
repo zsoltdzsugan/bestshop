@@ -1,7 +1,7 @@
 @props(['href' => null])
 
 @php
-    $classes = 'inline-flex items-center px-4 py-2 bg-secondary dark:bg-secondary-dark border border-outline dark:border-outline-dark rounded-radius font-semibold text-xs text-on-secondary dark:text-on-secondary-dark uppercase tracking-widest shadow-sm hover:bg-surface-alt dark:hover:bg-surface-dark-alt hover:border-secondary dark:hover:border-secondary-dark focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1 focus:ring-offset-primary dark:focus:ring-offset-primary-dark disabled:opacity-25 transition ease-in-out duration-150';
+    $classes = 'inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 text-center rounded-radius font-semibold text-xs uppercase tracking-widest shadow-sm bg-secondary text-on-secondary transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:opacity-100 active:outline-offset-0 dark:bg-secondary-dark dark:text-on-secondary-dark dark:focus-visible:outline-secondary-dark transition ease-in-out duration-150 cursor-pointer';
 @endphp
 
 @if ($href)
