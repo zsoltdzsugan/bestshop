@@ -58,8 +58,8 @@
         </div>
         <div class="w-full h-full justify-center py-6 gap-6 flex flex-col">
             <h1 class="text-2xl font-extrabold text-pretty text-on-surface-strong dark:text-on-surface-dark-strong">Subscribe To Our Newsletter</h1>
-            <p class="text-md text-pretty font-semibold text-on-surface dark:text-on-surface-dark">Get all the latest information on Events, Sales and Offers. Do not miss our huge sales!</p>
-            <x-text-input />
+            <p class="text-sm text-pretty font-semibold text-on-surface dark:text-on-surface-dark">Get all the latest information on Events, Sales and Offers. Do not miss our huge sales!</p>
+            <x-text-input class="bg-surface-alt dark:bg-surface-dark-alt" id="email" name="email" placeholder="Enter your email address" type="email" autocomplete="email"/>
             <x-primary-button>
                 Subscribe
             </x-primary-button>
@@ -67,7 +67,7 @@
             <img src="{{ asset('storage/home/cards/credit.png') }}" class="h-auto w-36">
         </div>
     </div>
-    <div class="max-w-screen bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark flex items-center justify-center text-center py-2 shadow-sm">
+    <div class="bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark flex items-center justify-center text-center py-2 shadow-sm">
         <p>Copyright &copy; 2025 BestShop. All Rights Reserved.</p>
     </div>
 </section>
