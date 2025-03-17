@@ -1,7 +1,7 @@
 <!-- footer -->
-<section class="min-w-screen h-auto bg-surface dark:bg-surface-dark text-on-surface dark:text-on-surface-dark mt-12 shadow-sm">
-    <div class="flex justify-center h-full gap-8 max-w-7xl mx-auto">
-        <div class="w-full h-full justify-center p-6 gap-6 flex flex-col">
+<section class="relative h-auto bg-surface dark:bg-surface-dark text-on-surface dark:text-on-surface-dark shadow-sm">
+    <div class="flex justify-between h-full max-w-7xl mx-auto">
+        <div class="w-full h-full justify-center py-6 gap-6 flex flex-col">
             <div>
                 <!-- Brand Logo -->
                 <a href="#" class="text-on-surface dark:text-on-surface-dark rounded-radius">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-full justify-center p-6 gap-6 text-on-surface dark:text-on-surface-dark flex flex-col">
+        <div class="w-full h-full justify-center py-6 gap-6 text-on-surface dark:text-on-surface-dark flex flex-col">
             <h3 class="text-pretty font-bold text-xl uppercase text-on-surface-strong dark:text-on-surface-dark-strong">Company</h3>
             <ul>
                 <li class="text-lg">FAQ</li>
@@ -56,7 +56,7 @@
                 <li class="text-lg">Order History</li>
             </ul>
         </div>
-        <div class="w-full h-full justify-center p-6 gap-6 flex flex-col">
+        <div class="w-full h-full justify-center py-6 gap-6 flex flex-col">
             <h1 class="text-2xl font-extrabold text-pretty text-on-surface-strong dark:text-on-surface-dark-strong">Subscribe To Our Newsletter</h1>
             <p class="text-md text-pretty font-semibold text-on-surface dark:text-on-surface-dark">Get all the latest information on Events, Sales and Offers. Do not miss our huge sales!</p>
             <x-text-input />
@@ -67,7 +67,7 @@
             <img src="{{ asset('storage/home/cards/credit.png') }}" class="h-auto w-36">
         </div>
     </div>
-    <div class="min-w-screen bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark text-center py-2 shadow-sm">
+    <div class="max-w-screen bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark flex items-center justify-center text-center py-2 shadow-sm">
         <p>Copyright &copy; 2025 BestShop. All Rights Reserved.</p>
     </div>
 </section>

@@ -18,7 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="relative max-w-screen font-sans antialiased bg-surface-alt text-on-surface-alt dark:bg-surface-dark-alt dark:text-on-surface-dark-alt">
-        <div class="min-h-screen mx-auto w-full rounded-radius">
+        <div class="min-h-screen max-w-screen mx-auto rounded-radius">
             @include('public.layouts.search')
             @include('public.layouts.navigation')
 
