@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\ChildCategoryStoreRequest;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\SubCategory;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Str;
@@ -32,17 +31,6 @@ class ChildCategoryController extends Controller
         $subCategories = SubCategory::all();
 
         return view('admin.child-category.create', compact('categories', 'subCategories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function getSubCategories(Request $request)
-    {
-        $subCategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
-
-        // Return the data as JSON
-        return response()->json($subCategories);
     }
 
     /**

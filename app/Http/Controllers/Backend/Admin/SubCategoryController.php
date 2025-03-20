@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\SubCategoryStoreRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Str;
@@ -92,5 +94,16 @@ class SubCategoryController extends Controller
         $subCategory->delete();
 
         return redirect()->route('admin.sub-category.index')->with('status', 'sub-category-deleted');
+    }
+
+    /**
+     * Get subcategories of a category.
+     */
+    public function getSubcategories(Request $request): JsonResponse
+    {
+        $subcategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
+
+        // Return the data as JSON
+        return response()->json($subcategories);
     }
 }
