@@ -67,6 +67,15 @@
                     <x-text-input id="x_link" name="x_link" type="text" class="mt-1 block w-full p-2"/>
                     <x-input-error class="mt-2" :messages="$errors->get('x_link')" />
                 </div>
+                <div>
+                    <x-input-label for="user_id" :value="__('Owner')" />
+                    <x-select-input id="user_id" name="user_id" type="text" class="mt-1 block w-full p-2">
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                    </x-select-input>
+                    <x-input-error class="mt-2" :messages="$errors->get('owner')" />
+                </div>
 
                 <div class="flex items-center gap-4">
                     <x-primary-button>{{ __('Create') }}</x-primary-button>

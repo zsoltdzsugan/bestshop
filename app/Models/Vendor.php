@@ -24,6 +24,7 @@ class Vendor extends Model
         'fb_link',
         'ig_link',
         'x_link',
+        'user_id',
     ];
 
     /**
