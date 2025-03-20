@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\SubCategoryController;
 use App\Http\Controllers\Backend\Admin\VendorController;
 use App\Http\Controllers\Backend\Admin\UserController;
+use App\Http\Controllers\Backend\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin'])
@@ -26,11 +27,13 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/slider', SliderController::class);
 
         Route::resource('/category', CategoryController::class);
+        Route::get('/get-subcategory', [SubCategoryController::class, 'getSubcategories'])->name('get-subcategories');
         Route::resource('/sub-category', SubCategoryController::class);
-        Route::get('/get-subcategory', [ChildCategoryController::class, 'getSubCategories'])->name('get-subcategories');
         Route::resource('/child-category', ChildCategoryController::class);
 
         Route::resource('/brand', BrandController::class);
+
+        Route::resource('/product', ProductController::class);
 
         Route::resource('/vendor', VendorController::class);
     });

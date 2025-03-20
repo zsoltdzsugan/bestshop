@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Vendor\ProductController;
 use App\Http\Controllers\Backend\Vendor\VendorController;
 use App\Http\Controllers\Backend\Vendor\ProfileController;
 use App\Http\Controllers\Backend\Vendor\VendorProfileController;
@@ -17,4 +18,6 @@ Route::middleware(['auth', 'role:vendor'])
         Route::delete('/profile', [ProfileController::class, 'delete'])->name('profile.destroy');
 
         Route::resource('/vendor-profile', VendorProfileController::class);
+
+        Route::resource('/product', ProductController::class);
     });
