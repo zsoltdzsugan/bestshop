@@ -5,9 +5,9 @@
     'selected' => null,
 ])
 
-<div class="relative flex mt-1 w-full max-w-xs flex-col gap-1 text-on-surface dark:text-on-surface-dark">
+<div class="relative flex mt-1 w-full max-w-sm flex-col gap-1 text-on-surface dark:text-on-surface-dark">
 
-    <span class="absolute pointer-events-none right-5 top-2 material-symbols-outlined">
+    <span class="absolute pointer-events-none right-2.5 top-2 material-symbols-outlined">
         keyboard_arrow_down
     </span>
 
