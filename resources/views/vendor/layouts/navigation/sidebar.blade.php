@@ -50,7 +50,10 @@
 
                     <ul x-cloak x-collapse x-show="isExpanded" aria-labelledby="user-management-btn" id="user-management">
                         <li class="px-1 py-0.5 first:mt-2">
-                            <x-nav-link href="{{ route('admin.brand.index') }}" :active="request()->routeIs('admin.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Product</x-nav-link>
+                            <x-nav-link href="{{ route('vendor.dashboard') }}" :active="request()->routeIs('admin.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Brand</x-nav-link>
+                        </li>
+                        <li class="px-1 py-0.5 first:mt-2">
+                            <x-nav-link href="{{ route('vendor.dashboard') }}" :active="request()->routeIs('admin.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Product</x-nav-link>
                         </li>
                     </ul>
                 </div>
