@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Admin\ChildCategoryController;
 use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\SubCategoryController;
 use App\Http\Controllers\Backend\Admin\VendorController;
+use App\Http\Controllers\Backend\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin'])
@@ -19,6 +20,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'delete'])->name('profile.destroy');
+
+        Route::resource('/user', UserController::class);
 
         Route::resource('/slider', SliderController::class);
 
