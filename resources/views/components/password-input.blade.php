@@ -1,9 +1,9 @@
 @props(['disabled' => false])
 
-<div class="flex w-full flex-col mt-1 gap-1 text-on-surface dark:text-on-surface-dark">
+<div class="flex w-full max-w-sm flex-col mt-1 gap-1 text-on-surface dark:text-on-surface-dark">
     <div x-data="{ showPassword: false }" class="relative">
         <input x-bind:type="showPassword ? 'text' : 'password'" @disabled($disabled) {{ $attributes->merge(['class' => "w-full rounded-radius bg-surface border border-outline dark:border-outline-dark p-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:bg-surface-dark-alt/50 dark:focus-visible:outline-primary-dark"]) }} />
-        <button type="button"  x-on:click="showPassword = !showPassword" class="absolute mt-0.5 right-2.5 top-1/2 -translate-y-1/2 text-on-surface dark:text-on-surface-dark" aria-label="Show password">
+        <button type="button"  x-on:click="showPassword = !showPassword" class="absolute top-3.25 right-2.5 text-on-surface dark:text-on-surface-dark" aria-label="Show password">
             <svg x-show="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="size-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
