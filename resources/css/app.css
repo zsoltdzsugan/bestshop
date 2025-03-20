@@ -343,6 +343,10 @@
 
 /**TODO: need js logic to add/remove dark class on html tag (see: admin.blade.php) */
 
+[x-cloak] {
+    display: none;
+}
+
 /** DATATABLE STYLE */
 /** datatable searchbar  */
 #dt-search-0 {
