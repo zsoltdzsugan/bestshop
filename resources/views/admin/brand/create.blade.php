@@ -8,7 +8,7 @@
         </p>
     </x-slot>
 
-    <div class="overflow-hidden w-full overflow-x-auto rounded-md border border-outline dark:border-outline-dark p-4">
+    <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark p-4">
         <section>
             <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                 @csrf
@@ -44,18 +44,18 @@
                 </div>
                 <div>
                     <x-input-label for="featured" :value="__('Featured')" />
-                    <select id="featured" name="featured" class="mt-1 block w-full" value="{{ old('featured') }}">
+                    <x-select-input id="featured" name="featured" class="mt-1 block w-full" value="{{ old('featured') }}">
                         <option value="1">Yes</option>
                         <option value="0">No</option>
-                    </select>
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('featured')" />
                 </div>
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
-                    <select id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
+                    <x-select-input id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
-                    </select>
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                 </div>
 

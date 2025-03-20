@@ -8,7 +8,7 @@
         </p>
     </x-slot>
 
-    <div class="overflow-hidden w-full overflow-x-auto rounded-md border border-outline dark:border-outline-dark p-4">
+    <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark p-4">
         <section>
             <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                 @csrf
@@ -63,10 +63,10 @@
                 </div>
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
-                    <select id="status" name="status" class="mt-1 block w-full">
+                    <x-select-input id="status" name="status" class="mt-1 block w-full">
                         <option value="1" {{ old('status', $slider->status) == 1 ? 'selected' : '' }}>Active</option>
                         <option value="0" {{ old('status', $slider->status) == 0 ? 'selected' : '' }}>Inactive</option>
-                    </select>
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                 </div>
 

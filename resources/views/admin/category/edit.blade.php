@@ -57,10 +57,10 @@
                 </div>
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
-                    <select id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
+                    <x-select-input id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
                         <option value="1" {{ old('status', $category->status) == 1 ? 'selected' : '' }}>Active</option>
                         <option value="0" {{ old('status', $category->status) == 0 ? 'selected' : '' }}>Inactive</option>
-                    </select>
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                 </div>
 

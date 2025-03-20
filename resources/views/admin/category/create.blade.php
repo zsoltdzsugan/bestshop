@@ -46,10 +46,10 @@
                 </div>
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
-                    <select id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
+                    <x-select-input id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
-                    </select>
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('status')" />
                 </div>
 

@@ -20,27 +20,27 @@
 
 
                 <div>
-                    <x-input-label for="category_id" :value="__('Category')" class="w-fit pl-0.5 text-sm"/>
-                    <x-select-input id="category_id" name="category_id">
+                    <x-input-label for="category" :value="__('Category')" class="w-fit pl-0.5 text-sm"/>
+                    <x-select-input id="category" name="category">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{ $category->id == old('category_id', $childCategory->category_id) ? 'selected' : '' }}>
                                 {{ $category->name }}
                             </option>
                         @endforeach
                     </x-select-input>
-                    <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
+                    <x-input-error class="mt-2" :messages="$errors->get('category')" />
                 </div>
 
                 <div>
-                    <x-input-label for="sub_category_id" :value="__('Sub-Category')" class="w-fit pl-0.5 text-sm"/>
-                    <x-select-input id="sub_category_id" name="sub_category_id">
+                    <x-input-label for="sub-category" :value="__('SubCategory')" class="w-fit pl-0.5 text-sm"/>
+                    <x-select-input id="sub-category" name="sub-category">
                         @foreach ($subCategories as $subCategory)
                             <option value="{{ $subCategory->id }}" {{ $subCategory->id == old('sub_category_id', $childCategory->sub_category_id) ? 'selected' : '' }}>
                                 {{ $subCategory->name }}
                             </option>
                         @endforeach
                     </x-select-input>
-                    <x-input-error class="mt-2" :messages="$errors->get('sub_category_id')" />
+                    <x-input-error class="mt-2" :messages="$errors->get('sub_category')" />
                 </div>
 
                 <div>
@@ -75,46 +75,6 @@
         </section>
     </div>
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const categorySelect = document.querySelector('#category_id');
-
-                categorySelect.addEventListener('change', function () {
-                    let id = this.value;
-
-                    fetch(`{{ route('admin.get-subcategories') }}?id=${id}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log("DATA", data);
-                        const subCategorySelect = document.querySelector('#sub_category_id');
-                        const defaultOption = document.createElement('option');
-
-                        subCategorySelect.innerHTML = '';
-                        defaultOption.disabled = true;
-                        defaultOption.selected = true;
-                        defaultOption.textContent = "Select Subcategory";
-                        defaultOption.value = "";
-                        subCategorySelect.appendChild(defaultOption);
-
-                        data.forEach(function(item) {
-
-                            const option = document.createElement('option');
-                            option.value = item.id;
-                            option.textContent = item.name;
-
-                            subCategorySelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                });
-            });
-        </script>
+        @vite('resources/js/subCategoryDropdown.js')
     @endpush
 </x-admin-layout>
