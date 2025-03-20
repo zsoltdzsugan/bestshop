@@ -1,25 +1,25 @@
 <div class="flex space-x-2">
     <!-- Edit Button -->
-    <x-info-button :href="route('admin.category.edit', $category->id)">
+    <x-info-button :classType="'info'" :href="route('admin.vendor.edit', $vendor->id)">
         <i class="fa-solid fa-pen-to-square"></i>
     </x-info-button>
 
     <!-- Delete Button -->
     <x-danger-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-category-deletion-{{ $category->id }}')"
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-vendor-deletion-{{ $vendor->id }}')"
     >
         <i class="fa-solid fa-trash"></i>
     </x-danger-button>
 
     <!-- Delete Confirmation Modal -->
-    <x-modal name="confirm-category-deletion-{{ $category->id }}" focusable>
-        <form method="POST" action="{{ route('admin.category.destroy', $category->id) }}" class="p-6">
+    <x-modal name="confirm-vendor-deletion-{{ $vendor->id }}" focusable>
+        <form method="POST" action="{{ route('admin.vendor.destroy', $vendor->id) }}" class="p-6">
             @csrf
             @method('DELETE')
 
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Are you sure you want to delete this category?') }}
+                {{ __('Are you sure you want to delete this vendor?') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
