@@ -77,7 +77,7 @@ class VendorProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VendorStoreRequest $request, string $id)
+    public function update(VendorStoreRequest $request, string $id): RedirectResponse
     {
         $data = $request->validated();
         $vendor = Vendor::findOrFail($id);
@@ -96,7 +96,7 @@ class VendorProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $vendor = Vendor::findOrFail($id);
 

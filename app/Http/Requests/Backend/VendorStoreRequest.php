@@ -31,6 +31,7 @@ class VendorStoreRequest extends FormRequest
             'fb_link' => ['nullable', 'url'],
             'ig_link' => ['nullable', 'url'],
             'x_link' => ['nullable', 'url'],
+            'user_id' => ['nullable'],
         ];
     }
 }
