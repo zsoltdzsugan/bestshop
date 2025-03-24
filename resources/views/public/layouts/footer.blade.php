@@ -56,7 +56,7 @@
                 <li class="text-lg">Order History</li>
             </ul>
         </div>
-        <div class="w-full h-full justify-center py-6 gap-6 flex flex-col">
+        <div class="w-full max-w-sm h-full justify-center py-6 gap-6 flex flex-col">
             <h1 class="text-2xl font-extrabold text-pretty text-on-surface-strong dark:text-on-surface-dark-strong">Subscribe To Our Newsletter</h1>
             <p class="text-sm text-pretty font-semibold text-on-surface dark:text-on-surface-dark">Get all the latest information on Events, Sales and Offers. Do not miss our huge sales!</p>
             <x-text-input class="bg-surface-alt dark:bg-surface-dark-alt" id="newsletter-email" name="newsletter-email" placeholder="Enter your email address" type="email" autocomplete="email"/>

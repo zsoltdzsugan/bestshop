@@ -4,6 +4,9 @@
 
             <!-- TODO: Sidebar menu like amazon -->
 
+            <!-- dark overlay for when the sidebar is open on smaller screens  -->
+            <div x-cloak x-show="sidebarIsOpen" class="fixed inset-0 z-20 bg-surface-dark/10 backdrop-blur-xs md:hidden" aria-hidden="true" x-on:click="sidebarIsOpen = false" x-transition.opacity ></div>
+
             <!-- Desktop Menu -->
             <ul class="hidden items-center gap-4 shrink-0 sm:flex">
                 <x-menu-item :href="route('home')" active>
@@ -51,19 +54,16 @@
             @if (Route::has('login'))
                 <div class="sm:flex sm:gap-4">
                     @auth
-                        @if (Auth::user()->role == 'vendor')
-                            <x-primary-button :href="route('vendor.dashboard')">
-                            Vendor Dashboard
-                            </x-primary-button>
-                        @endif
-                        @if (Auth::user()->role == 'admin')
-                            <x-primary-button :href="route('admin.dashboard')">
-                            Admin Dashboard
-                            </x-primary-button>
-                        @endif
+                        @php
+                            $dashboard = match(Auth::user()->role) {
+                            'admin' => 'admin.dashboard',
+                            'vendor' => 'vendor.dashboard',
+                            default => 'dashboard',
+                            };
+                        @endphp
 
-                        <x-primary-button :href="route('dashboard')">
-                        Dashboard
+                        <x-primary-button :href="route($dashboard)">
+                            Dashboard
                         </x-primary-button>
 
                         <form method="POST" action="{{ route('logout') }}">

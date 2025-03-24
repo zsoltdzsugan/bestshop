@@ -21,3 +21,5 @@ Route::middleware(['auth', 'role:vendor'])
 
         Route::resource('/product', ProductController::class);
     });
+
+Route::get('/vendor/login', [VendorController::class, 'login'])->name('vendor.login');
