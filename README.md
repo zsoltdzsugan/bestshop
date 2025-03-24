@@ -38,55 +38,71 @@ BestShop is an e-commerce platform built with Laravel, designed to provide a sea
     git clone https://github.com/zsoltdzsugan/bestshop.git
     cd bestshop
     ```
-2. **Copy the environment file**  
+2. **Install dependencies**  
+    ```sh
+    composer install
+    npm install
+    ```
+3. **Copy the environment file and genereate application key**  
     ```sh
     cp .env.example .env
-    ```
-3. **Generate the application key**  
-    ```sh
-    docker-compose run --rm app php artisan key:generate
+    php artisan key:generate
     ```
 4. **Build and start the containers**  
     ```sh
-    docker-compose up -d
+    docker compose up -d
     ```
 5. **Run migrations and seed database**  
     ```sh
-    docker exec -it bestshop-app php artisan migrate --seed
+    docker compose exec laravel.test php artisan migrate --seed
     ```
-6. **Access the application**  
+6. **Link storage**  
+    ```sh
+    docker compose exec laravel.test php artisan storage:link
+    ```
+7. **Run frontend dependencies**  
+    ```sh
+    npm run dev
+    ```
+8. **Access the application**  
     ```sh
     http://localhost
     ```
 
 ### Using Laravel Sail
 
-1. **Install dependencies**  
+1. **Clone the repository**  
+    ```sh
+    git clone https://github.com/zsoltdzsugan/bestshop.git
+    cd bestshop
+    ```
+2. **Install dependencies**  
     ```sh
     composer install
     npm install
     ```
-2. **Copy the environment file**  
+3. **Copy the environment file and genereate application key**  
     ```sh
     cp .env.example .env
+    php artisan key:generate
     ```
-3. **Start Laravel Sail**  
+4. **Start Laravel Sail**
     ```sh
     ./vendor/bin/sail up -d
-    ```
-4. **Generate the application key**  
-    ```sh
-    ./vendor/bin/sail artisan key:generate
     ```
 5. **Run migrations and seed database**  
     ```sh
     ./vendor/bin/sail artisan migrate --seed
     ```
-6. **Run frontend dependencies**  
+6. **Link storage**  
     ```sh
-    composer run dev
+    ./vendor/bin/sail artisan storage:link
     ```
-7. **Access the application**  
+7. **Run frontend dependencies**  
+    ```sh
+    npm run dev
+    ```
+8. **Access the application**  
     ```sh
     http://localhost
     ```
