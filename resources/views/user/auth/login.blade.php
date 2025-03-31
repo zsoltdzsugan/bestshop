@@ -32,7 +32,7 @@
                             <x-text-input id="email" name="email" type="email" autocomplete="email"
                                 placeholder="Enter your email address"
                                 :value="old('email')" required
-                                class="w-full rounded-radius bg-surface px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:bg-surface-dark dark:focus-visible:outline-primary-dark" />
+                                class="w-full rounded-radius bg-surface mt-1 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:bg-surface-dark dark:focus-visible:outline-primary-dark" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                     </div>

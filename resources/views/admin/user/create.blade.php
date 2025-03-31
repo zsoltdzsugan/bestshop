@@ -4,11 +4,11 @@
             {{ __('Create User') }}
         </h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and username description.") }}
+            {{ __("Create a user profile.") }}
         </p>
     </x-slot>
 
-    <div class="overflow-hidden w-full overflow-x-auto rounded-md border border-outline dark:border-outline-dark p-4">
+    <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark p-4">
         <section>
             <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                 @csrf
