@@ -99,9 +99,9 @@ class SubCategoryController extends Controller
     /**
      * Get subcategories of a category.
      */
-    public function getSubcategories(Request $request): JsonResponse
+    public function getSubcategories(string $categoryId): JsonResponse
     {
-        $subcategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
+        $subcategories = SubCategory::where('category_id', $categoryId)->where('status', 1)->get();
 
         // Return the data as JSON
         return response()->json($subcategories);

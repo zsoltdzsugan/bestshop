@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const categorySelect = document.querySelector('#category_id');
+    const subcategorySelect = document.querySelector('#sub_category_id');
 
-    categorySelect.addEventListener('change', function() {
+    subcategorySelect.addEventListener('change', function() {
         let id = this.value;
 
-        fetch(`/admin/get-subcategory/${id}`, {
+        fetch(`/admin/get-childcategory/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,16 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 console.log("DATA", data);
-                const subCategorySelect = document.querySelector('#sub_category_id');
+                const childcategorySelect = document.querySelector('#child_category_id');
                 const defaultOption = document.createElement('option');
 
-                subCategorySelect.innerHTML = '';
+                childcategorySelect.innerHTML = '';
                 defaultOption.disabled = true;
                 defaultOption.selected = true;
-                defaultOption.textContent = data.length > 0 ? "Please Select" : "No Subcategory";
+                defaultOption.textContent = data.length > 0 ? "Please Select" : "No Childcategory";
                 defaultOption.value = "";
-                subCategorySelect.appendChild(defaultOption);
-                subCategorySelect.disabled = data.length > 0 ? false : true;
+                childcategorySelect.appendChild(defaultOption);
+                childcategorySelect.disabled = data.length > 0 ? false : true;
 
 
                 data.forEach(function(item) {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     option.value = item.id;
                     option.textContent = item.name;
 
-                    subCategorySelect.appendChild(option);
+                    childcategorySelect.appendChild(option);
                 });
             })
             .catch(error => {

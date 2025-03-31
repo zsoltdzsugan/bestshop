@@ -8,6 +8,7 @@ use App\Http\Requests\Backend\ChildCategoryStoreRequest;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\SubCategory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Str;
@@ -92,5 +93,11 @@ class ChildCategoryController extends Controller
         $childCategory->delete();
 
         return redirect()->route('admin.child-category.index')->with('status', 'child-category-deleted');
+    }
+
+    public function getChildcategories(string $subCategoryId): JsonResponse
+    {
+        $childCategories = ChildCategory::where('sub_category_id', $subCategoryId)->where('status', 1)->get();
+        return response()->json($childCategories);
     }
 }

@@ -18,8 +18,8 @@
                 @csrf
 
                 <div>
-                    <x-input-label for="category" :value="__('Category')" />
-                    <x-select-input id="category" name="category" placeholder="Select Category" class="main-category">
+                    <x-input-label for="category_id" :value="__('Category')" />
+                    <x-select-input id="category_id" name="category_id" class="main-category">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">
                                 {{ $category->name }}
@@ -28,11 +28,11 @@
                     </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('category')" />
                 </div>
-                <div>
-                    <x-input-label for="sub-category" :value="__('SubCategory')" />
-                    <x-select-input id="sub-category" name="sub-category" placeholder="Select Subcategory" class="sub-category">
+                <div class="w-full">
+                    <x-input-label for="sub_category_id" :value="__('SubCategory')" />
+                    <x-select-input id="sub_category_id" name="sub_category_id" class="mt-1 block w-full">
                     </x-select-input>
-                    <x-input-error class="mt-2" :messages="$errors->get('sub-category')" />
+                    <x-input-error class="mt-2" :messages="$errors->get('sub_category_id')" />
                 </div>
                 <div>
                     <x-input-label for="name" :value="__('Name')" />

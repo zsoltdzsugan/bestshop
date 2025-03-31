@@ -27,8 +27,9 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/slider', SliderController::class);
 
         Route::resource('/category', CategoryController::class);
-        Route::get('/get-subcategory', [SubCategoryController::class, 'getSubcategories'])->name('get-subcategories');
+        Route::get('/get-subcategory/{categoryId}', [SubCategoryController::class, 'getSubCategories'])->name('get-subcategories');
         Route::resource('/sub-category', SubCategoryController::class);
+        Route::get('/get-childcategory/{subcategoryId}', [ChildCategoryController::class, 'getChildCategories'])->name('get-childcategories');
         Route::resource('/child-category', ChildCategoryController::class);
 
         Route::resource('/brand', BrandController::class);
