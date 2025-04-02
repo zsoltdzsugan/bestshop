@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 defaultOption.textContent = data.length > 0 ? "Please Select" : "No Subcategory";
                 defaultOption.value = "";
                 subCategorySelect.appendChild(defaultOption);
-                subCategorySelect.disabled = data.length > 0 ? false : true;
+                subCategorySelect.disabled = data.length === 0;
 
 
                 data.forEach(function(item) {

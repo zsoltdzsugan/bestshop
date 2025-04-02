@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const childcategorySelect = document.querySelector('#child_category_id');
                 const defaultOption = document.createElement('option');
 
+                childcategorySelect.disabled = subcategorySelect.disabled || data.length === 0;
                 childcategorySelect.innerHTML = '';
                 defaultOption.disabled = true;
                 defaultOption.selected = true;
                 defaultOption.textContent = data.length > 0 ? "Please Select" : "No Childcategory";
                 defaultOption.value = "";
                 childcategorySelect.appendChild(defaultOption);
-                childcategorySelect.disabled = data.length > 0 ? false : true;
 
 
                 data.forEach(function(item) {
