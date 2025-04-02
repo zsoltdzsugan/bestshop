@@ -1,11 +1,55 @@
 <section id="main-navigation" class="max-w-screen w-full items-center bg-surface dark:bg-surface-dark">
-    <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="max-w-7xl h-auto mx-auto flex items-center justify-between gap-4 py-1 aria-label="main-menu">
+    <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="max-w-7xl h-auto mx-auto flex items-center justify-between gap-4 aria-label="main-menu">
         <div class="flex gap-4 items-center">
 
-            <!-- TODO: Sidebar menu like amazon -->
+            <div x-data="{ sidebarIsOpen: false, mainIsOpen: false, subIsOpen:false }" x-on:click.outside="sidebarIsOpen = false" x-on:keydown.esc.window="sidebarIsOpen = false" class="z-50">
+                <!-- toggle button -->
+                <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-radius bg-primary dark:bg-primary-dark px-4 py-1.5 text-sm font-medium tracking-wide transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2" x-on:click="sidebarIsOpen = ! sidebarIsOpen">
+                    <svg class="size-5 text-on-primary dark:text-on-primary-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+                    </svg>
+                    <span class="sr-only">sidenav toggle</span>
+                </button>
+                    <!-- overlay -->
+                    <div x-cloak x-show="sidebarIsOpen" x-bind:class="sidebarIsOpen ? 'display:block' : 'display:none'" @click="sidebarIsOpen = false" id="sidenavOverlay" class="z-10 absolute top-0 left-0 w-full h-full bg-black opacity-50 transition duration-150 ease-in-out"></div>
 
-            <!-- dark overlay for when the sidebar is open on smaller screens  -->
-            <div x-cloak x-show="sidebarIsOpen" class="fixed inset-0 z-20 bg-surface-dark/10 backdrop-blur-xs md:hidden" aria-hidden="true" x-on:click="sidebarIsOpen = false" x-transition.opacity ></div>
+                <nav x-cloak x-show="sidebarIsOpen" x-trap="sidebarIsOpen" class="absolute top-0 fixed left-0 z-50 flex h-svh w-80 shrink-0 flex-col bg-surface p-4 transition-transform duration-300 dark:bg-surface-dark" aria-label="side-navigation" x-transition:enter="transition duration-200 ease-out" x-transition:enter-end="translate-x-0" x-transition:enter-start="-translate-x-80" x-transition:leave="transition ease-in duration-200 " x-transition:leave-end="-translate-x-80" x-transition:leave-start="translate-x-0">
+                    <!-- sidebar header -->
+                    <div class="flex items-center justify-between" id="sidenavHeader">
+                        <h3 class="text-lg font-medium text-on-surface-strong dark:text-on-surface-dark-strong">All Products</h3>
+                        <button class="text-on-surface dark:text-on-surface-dark" x-on:click="sidebarIsOpen = false">
+                            <span class="material-symbols-outlined">
+                            close
+                            </span>
+                            <span class="sr-only">close sidebar</span>
+                        </button>
+                    </div>
+
+                    <!-- sidebar below header -->
+                    <div id="mainContainer">
+                        <div class="mt-4 overflow-y-auto h-full w-full">
+                            @foreach($categories as $category)
+                                <a href="#" class="flex items-center py-3 px-1 justify-between text-on-surface dark:text-white hover:bg-primary dark:hover:bg-primary-dark hover:text-on-primary dark:hover:text-on-primary-dark">
+                                    <div class="sidenavContent flex items-center gap-2">
+                                        <span class="material-symbols-outlined">{{ $category->icon }}</span>
+                                        <span class="text-lg text-pretty">{{ $category->name }}</span>
+                                    </div>
+                                    @if (count($category->subCategories) > 0)
+                                    <div class="flex items-center justify-end">
+                                        <span class="material-symbols-outlined"> chevron_right </span>
+                                    </div>
+                                    @endif
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+
+                </nav>
+            </div>
+
+
+
 
             <!-- Desktop Menu -->
             <ul class="hidden items-center gap-4 shrink-0 sm:flex">
@@ -62,7 +106,7 @@
                             };
                         @endphp
 
-                        <x-primary-button :href="route($dashboard)">
+                        <x-primary-button :href="route($dashboard)" class="">
                             Dashboard
                         </x-primary-button>
 
