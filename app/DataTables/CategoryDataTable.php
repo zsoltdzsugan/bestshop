@@ -32,7 +32,7 @@ class CategoryDataTable extends DataTable
             ->addColumn('status', function ($category) {
                 $statusIcon = $category->status == 1
                     ? '<i class="fa-solid fa-circle text-success"></i>'
-                    : '<i class="fa-solid fa-circle text-surface-dark"></i>';
+                    : '<i class="fa-solid fa-circle text-on-warning"></i>';
 
                 return $statusIcon;
             })
