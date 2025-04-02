@@ -15,6 +15,8 @@ class HomeController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('serial', 'asc')->get();
         $products = config('products.products');
 
+        $categories = Category::all();
+
         return view(
             'public.home.home',
             compact(
