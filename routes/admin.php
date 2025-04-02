@@ -10,6 +10,9 @@ use App\Http\Controllers\Backend\Admin\SubCategoryController;
 use App\Http\Controllers\Backend\Admin\VendorController;
 use App\Http\Controllers\Backend\Admin\UserController;
 use App\Http\Controllers\Backend\Admin\ProductController;
+use App\Http\Controllers\Backend\Product\ImageGalleryController;
+use App\Http\Controllers\Backend\Product\VariantController;
+use App\Http\Controllers\Backend\Product\VariantItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin'])
@@ -37,6 +40,18 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/product', ProductController::class);
 
         Route::resource('/vendor', VendorController::class);
+
+        Route::resource('/product.images', ImageGalleryController::class)
+            ->parameters(['images' => 'image'])
+            ->scoped(['image' => 'id']);
+
+        Route::resource('/product.variants', VariantController::class)
+            ->parameters(['variants' => 'variant'])
+            ->scoped(['variant' => 'id']);
+
+        Route::resource('/product.variants.items', VariantItemController::class)
+            ->parameters(['variants' => 'variant', 'items' => 'item'])
+            ->scoped(['variant' => 'id', 'item' => 'id']);
     });
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
