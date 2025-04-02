@@ -23,9 +23,9 @@
                     <x-input-error class="mt-2" :messages="$errors->get('new-preview')" />
                 </div>
                 <div>
-                    <x-input-label for="image" :value="__('Image')" />
-                    <x-text-input id="image" name="image" type="file" class="mt-1 block w-full p-2" autofocus onchange="previewImage(event)"/>
-                    <x-input-error class="mt-2" :messages="$errors->get('image')" />
+                    <x-input-label for="thumb_image" :value="__('Image')" />
+                    <x-text-input id="thumb_image" name="thumb_image" type="file" class="mt-1 block w-full p-2"  onchange="previewImage(event)"/>
+                    <x-input-error class="mt-2" :messages="$errors->get('thumb_image')" />
                 </div>
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
@@ -34,7 +34,11 @@
                 </div>
                 <div>
                     <x-input-label for="vendor_id" :value="__('Vendor')" />
-                    <x-text-input id="vendor_id" name="vendor_id" type="text" class="mt-1 block w-full" value="{{ old('type') }}" />
+                    <x-select-input id="vendor_id" name="vendor_id" class="mt-1 block w-full">
+                        @foreach ($vendors as $vendor)
+                            <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                        @endforeach
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('vendor_id')" />
                 </div>
                 <div class="flex w-full gap-4 justify-between max-w-sm">
@@ -48,15 +52,25 @@
                         <x-input-error class="mt-2" :messages="$errors->get('owner')" />
                     </div>
                     <div class="w-full">
-                        <x-input-label for="sub-category_id" :value="__('SubCategory')" />
-                        <x-select-input id="sub-category_id" name="sub-category_id" class="mt-1 block w-full">
+                        <x-input-label for="sub_category_id" :value="__('SubCategory')" />
+                        <x-select-input id="sub_category_id" name="sub_category_id" class="mt-1 block w-full">
                         </x-select-input>
-                        <x-input-error class="mt-2" :messages="$errors->get('sub-category_id')" />
+                        <x-input-error class="mt-2" :messages="$errors->get('sub_category_id')" />
+                    </div>
+                    <div class="w-full">
+                        <x-input-label for="child_category_id" :value="__('ChildCategory')" />
+                        <x-select-input id="child_category_id" name="child_category_id" class="mt-1 block w-full">
+                        </x-select-input>
+                        <x-input-error class="mt-2" :messages="$errors->get('child_category_id')" />
                     </div>
                 </div>
                 <div>
                     <x-input-label for="brand_id" :value="__('Brand')" />
-                    <x-text-input id="brand_id" name="brand_id" type="text" class="mt-1 block w-full" value="{{ old('brand') }}" />
+                    <x-select-input id="brand_id" name="brand_id" class="mt-1 block w-full">
+                        @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                        @endforeach
+                    </x-select-input>
                     <x-input-error class="mt-2" :messages="$errors->get('brand_id')" />
                 </div>
                 <div>
@@ -66,7 +80,7 @@
                 </div>
                 <div>
                     <x-input-label for="quantity" :value="__('Quantity')" />
-                    <x-text-input id="quantity" name="quantity" type="text" class="mt-1 block w-full" value="{{ old('brand') }}" />
+                    <x-text-input id="quantity" name="quantity" type="number" min="0" class="mt-1 block w-full" value="{{ old('brand') }}" />
                     <x-input-error class="mt-2" :messages="$errors->get('quantity')" />
                 </div>
                 <div>
@@ -97,33 +111,32 @@
                     <x-input-error class="mt-2" :messages="$errors->get('sale_price')" />
                 </div>
                 <div>
-                    <x-input-label for="sale_start" :value="__('Sale Start')" />
-                    <x-text-input id="sale_start" name="sale_start" type="text" class="mt-1 block w-full" value="{{ old('brand') }}" />
+                    <x-date-picker label="Sale Start" id="sale_start" name="sale_start" class="mt-1 block w-full"/>
                     <x-input-error class="mt-2" :messages="$errors->get('sale_start')" />
                 </div>
                 <div>
-                    <x-input-label for="sale_end" :value="__('Sale End')" />
-                    <x-text-input id="sale_end" name="sale_end" type="text" class="mt-1 block w-full" value="{{ old('brand') }}" />
+                    <x-date-picker label="Sale End" id="sale_end" name="sale_end" class="mt-1 block w-full"/>
                     <x-input-error class="mt-2" :messages="$errors->get('sale_end')" />
                 </div>
                 <div>
-                    <x-checkbox-input label="Top Product" id="is_top" name="is_top" />
+                    <x-toggle-input label="Top Product" id="is_top" name="is_top" />
                     <x-input-error class="mt-2" :messages="$errors->get('is_top')" />
                 </div>
                 <div>
-                    <x-checkbox-input label="New Product" id="is_new" name="is_new" />
+                    <x-toggle-input label="New Product" id="is_new" name="is_new" />
                     <x-input-error class="mt-2" :messages="$errors->get('is_new')" />
                 </div>
                 <div>
-                    <x-checkbox-input label="Best Product" id="is_best" name="is_best" />
+                    <x-toggle-input label="Best Product" id="is_best" name="is_best" />
                     <x-input-error class="mt-2" :messages="$errors->get('is_best')" />
                 </div>
                 <div>
-                    <x-checkbox-input label="Featured Product" id="is_featured" name="is_featured" />
+                    <x-toggle-input label="Featured Product" id="is_featured" name="is_featured" />
                     <x-input-error class="mt-2" :messages="$errors->get('is_featured')" />
                 </div>
+                <!-- TODO: admin approval for product -->
                 <div>
-                    <x-checkbox-input label="Approved Product" id="is_approved" name="is_approved" disabled />
+                    <x-toggle-input label="Approved Product" id="is_approved" name="is_approved" disabled />
                     <x-input-error class="mt-2" :messages="$errors->get('is_featured')" />
                 </div>
                 <div>
@@ -181,6 +194,6 @@
                 }
             }
         </script>
-        @vite('resources/js/subCategoryDropdown.js')
+        @vite('resources/js/categoryDropdown.js')
     @endpush
 </x-admin-layout>
