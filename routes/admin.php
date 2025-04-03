@@ -9,7 +9,7 @@ use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\SubCategoryController;
 use App\Http\Controllers\Backend\Admin\UserController;
-use App\Http\Controllers\Backend\Admin\VendorController;
+use App\Http\Controllers\Backend\Admin\ShopController;
 use App\Http\Controllers\Backend\Product\ImageGalleryController;
 use App\Http\Controllers\Backend\Product\VariantController;
 use App\Http\Controllers\Backend\Product\VariantItemController;
@@ -39,7 +39,7 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('/product', ProductController::class);
 
-        Route::resource('/vendor', VendorController::class);
+        Route::resource('/shop', ShopController::class);
 
         Route::resource('/product.images', ImageGalleryController::class)
             ->parameters(['images' => 'image'])

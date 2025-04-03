@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Edit Vendor') }}
+            {{ __('Edit Shop') }}
         </h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Update your account's profile information and email address.") }}
@@ -14,7 +14,7 @@
                 @csrf
             </form>
 
-            <form method="post" action="{{ route('admin.vendor.update', $vendor->id) }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('admin.shop.update', $shop->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('patch')
 
@@ -22,7 +22,7 @@
                 <div class="flex gap-8">
                     <div>
                         <x-input-label :value="__('Old')" />
-                        <img class="w-60 max-h-60" name="old-preview" id="old-preview" src="{{ asset('storage/' . $vendor->banner) }}" />
+                        <img class="w-60 max-h-60" name="old-preview" id="old-preview" src="{{ asset('storage/' . $shop->banner) }}" />
                         <x-input-error class="mt-2" :messages="$errors->get('old-preview')" />
                     </div>
                     <div>
@@ -38,49 +38,49 @@
                 </div>
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" required value="{{ old('name', $vendor->name) }}"/>
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" required value="{{ old('name', $shop->name) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div>
                     <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" required value="{{ old('email', $vendor->email) }}"/>
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" required value="{{ old('email', $shop->email) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
                 <div>
                     <x-input-label for="phone" :value="__('Phone')" />
-                    <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full p-2" value="{{ old('phone', $vendor->phone) }}"/>
+                    <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full p-2" value="{{ old('phone', $shop->phone) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                 </div>
                 <div>
                     <x-input-label for="address" :value="__('Address')" />
-                    <x-text-input id="address" name="address" type="text" class="mt-1 block w-full p-2" value="{{ old('address', $vendor->address) }}"/>
+                    <x-text-input id="address" name="address" type="text" class="mt-1 block w-full p-2" value="{{ old('address', $shop->address) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('address')" />
                 </div>
                 <div>
                     <x-input-label for="description" :value="__('Description')" />
-                    <x-textarea-input id="description" name="description" type="text" class="mt-1 block w-full p-2" placeholder="Description" rows="5" value="{{ old('description', $vendor->description) }}"/>
+                    <x-textarea-input id="description" name="description" type="text" class="mt-1 block w-full p-2" placeholder="Description" rows="5" value="{{ old('description', $shop->description) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('description')" />
                 </div>
                 <div>
                     <x-input-label for="fb_link" :value="__('Facebook')" />
-                    <x-text-input id="fb_link" name="fb_link" type="text" class="mt-1 block w-full p-2" value="{{ old('fb_link', $vendor->fb_link) }}"/>
+                    <x-text-input id="fb_link" name="fb_link" type="text" class="mt-1 block w-full p-2" value="{{ old('fb_link', $shop->fb_link) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('fb_link')" />
                 </div>
                 <div>
                     <x-input-label for="ig_link" :value="__('Instagram')" />
-                    <x-text-input id="ig_link" name="ig_link" type="text" class="mt-1 block w-full p-2" value="{{ old('ig_link', $vendor->ig_link) }}"/>
+                    <x-text-input id="ig_link" name="ig_link" type="text" class="mt-1 block w-full p-2" value="{{ old('ig_link', $shop->ig_link) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('ig_link')" />
                 </div>
                 <div>
                     <x-input-label for="x_link" :value="__('X (Twitter)')" />
-                    <x-text-input id="x_link" name="x_link" type="text" class="mt-1 block w-full p-2" value="{{ old('x_link', $vendor->x_link) }}"/>
+                    <x-text-input id="x_link" name="x_link" type="text" class="mt-1 block w-full p-2" value="{{ old('x_link', $shop->x_link) }}"/>
                     <x-input-error class="mt-2" :messages="$errors->get('x_link')" />
                 </div>
 
                 <div class="flex items-center gap-4">
                     <x-primary-button>{{ __('Update') }}</x-primary-button>
 
-                    @if (session('status') === 'vendor-updated')
+                    @if (session('status') === 'shop-updated')
                         <p
                             x-data="{ show: true }"
                             x-show="show"
@@ -90,7 +90,7 @@
                         >{{ __('Created.') }}</p>
                     @endif
 
-                    <x-secondary-button :href="route('admin.vendor.index')">{{ __('Back') }}</x-secondary-button>
+                    <x-secondary-button :href="route('admin.shop.index')">{{ __('Back') }}</x-secondary-button>
                 </div>
             </form>
         </section>

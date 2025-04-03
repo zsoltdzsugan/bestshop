@@ -1,7 +1,7 @@
 <x-vendor-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Create Vendor') }}
+            {{ __('Create Shop') }}
         </h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Update your account's profile information and email description.") }}
@@ -14,7 +14,7 @@
                 @csrf
             </form>
 
-            <form method="post" action="{{ route('vendor.vendor-profile.store') }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('vendor.shop.store') }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
                 <div>
@@ -71,7 +71,7 @@
                 <div class="flex items-center gap-4">
                     <x-primary-button>{{ __('Create') }}</x-primary-button>
 
-                    @if (session('status') === 'vendor-created')
+                    @if (session('status') === 'shop-created')
                         <p
                             x-data="{ show: true }"
                             x-show="show"
@@ -81,7 +81,7 @@
                         >{{ __('Created.') }}</p>
                     @endif
 
-                    <x-secondary-button :href="route('vendor.vendor-profile.index')">{{ __('Back') }}</x-secondary-button>
+                    <x-secondary-button :href="route('vendor.shop.index')">{{ __('Back') }}</x-secondary-button>
                 </div>
             </form>
         </section>

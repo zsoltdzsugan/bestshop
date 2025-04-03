@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Vendor;
+use App\Models\Shop;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class VendorDataTable extends DataTable
+class ShopDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -20,11 +20,11 @@ class VendorDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($vendor) {
-                return view('admin.vendor.partials.actions', compact('vendor'));
+            ->addColumn('action', function ($shop) {
+                return view('admin.shop.partials.actions', compact('shop'));
             })
-            ->addColumn('banner', function ($vendor) {
-                return '<img src="'.asset('storage/'.$vendor->banner).'" width="100">';
+            ->addColumn('banner', function ($shop) {
+                return '<img src="'.asset('storage/'.$shop->banner).'" width="100">';
             })
             ->addColumn('status', function ($query) {
                 $statusIcon = $query->status == 1
@@ -40,7 +40,7 @@ class VendorDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Vendor $model): QueryBuilder
+    public function query(Shop $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -51,7 +51,7 @@ class VendorDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vendor-table')
+            ->setTableId('shop-table')
             ->columns($this->getColumns())
             ->addTableClass('bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark rounded-radius')
             ->minifiedAjax()
@@ -101,6 +101,6 @@ class VendorDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Vendor_'.date('YmdHis');
+        return 'Shop_'.date('YmdHis');
     }
 }

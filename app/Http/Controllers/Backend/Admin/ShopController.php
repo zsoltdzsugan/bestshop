@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
-use App\DataTables\VendorDataTable;
+use App\DataTables\ShopDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\VendorStoreRequest;
+use App\Http\Requests\Backend\ShopStoreRequest;
 use App\Models\User;
-use App\Models\Vendor;
+use App\Models\Shop;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class VendorController extends Controller
+class ShopController extends Controller
 {
     protected ImageService $imageService;
 
@@ -23,9 +23,9 @@ class VendorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(VendorDataTable $dataTables): mixed
+    public function index(ShopDataTable $dataTables): mixed
     {
-        return $dataTables->render('admin.vendor.index');
+        return $dataTables->render('admin.shop.index');
     }
 
     /**
@@ -35,13 +35,13 @@ class VendorController extends Controller
     {
         $users = User::all();
 
-        return view('admin.vendor.create', compact('users'));
+        return view('admin.shop.create', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VendorStoreRequest $request): RedirectResponse
+    public function store(ShopStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,11 +49,11 @@ class VendorController extends Controller
             $data['banner'] = $this->imageService->upload($request->file('banner'), 'banners');
         }
 
-        $vendor = new Vendor;
-        $vendor->fill($data);
-        $vendor->save();
+        $shop = new Shop;
+        $shop->fill($data);
+        $shop->save();
 
-        return redirect()->route('admin.vendor.index')->with('status', 'vendor-created');
+        return redirect()->route('admin.shop.index')->with('status', 'shop-created');
     }
 
     /**
@@ -69,28 +69,28 @@ class VendorController extends Controller
      */
     public function edit(string $id): View
     {
-        $vendor = Vendor::findOrFail($id);
+        $shop = Shop::findOrFail($id);
 
-        return view('admin.vendor.edit', compact('vendor'));
+        return view('admin.shop.edit', compact('shop'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(VendorStoreRequest $request, string $id): RedirectResponse
+    public function update(ShopStoreRequest $request, string $id): RedirectResponse
     {
         $data = $request->validated();
-        $vendor = Vendor::findOrFail($id);
+        $shop = Shop::findOrFail($id);
 
         if ($request->hasFile('banner')) {
-            $this->imageService->delete($vendor->banner);
+            $this->imageService->delete($shop->banner);
             $data['banner'] = $this->imageService->upload($request->file('banner'), 'banners');
         }
 
-        $vendor->fill($data);
-        $vendor->save();
+        $shop->fill($data);
+        $shop->save();
 
-        return redirect()->route('admin.vendor.index')->with('status', 'vendor-profile-updated');
+        return redirect()->route('admin.shop.index')->with('status', 'shop-profile-updated');
     }
 
     /**
@@ -98,11 +98,11 @@ class VendorController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $vendor = Vendor::findOrFail($id);
+        $shop = Shop::findOrFail($id);
 
-        $this->imageService->delete($vendor->banner);
-        $vendor->delete();
+        $this->imageService->delete($shop->banner);
+        $shop->delete();
 
-        return redirect()->route('admin.vendor.index')->with('status', 'vendor-deleted');
+        return redirect()->route('admin.shop.index')->with('status', 'shop-deleted');
     }
 }

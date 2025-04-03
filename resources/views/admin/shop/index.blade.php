@@ -1,12 +1,12 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Vendor') }}
+            {{ __('Shop') }}
         </h2>
     </x-slot>
 
     <div class="flex justify-end items-center px-4">
-        <x-primary-button :href="route('admin.vendor.create')">
+        <x-primary-button :href="route('admin.shop.create')">
             <span class="material-symbols-outlined small-icon"> add </span>
             <span>Create New</span>
         </x-primary-button>

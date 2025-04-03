@@ -1,18 +1,18 @@
 <x-vendor-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Vendor') }}
+            {{ __('Shop') }}
         </h2>
     </x-slot>
 
     <div class="flex justify-end items-center px-4">
-        @if (!$vendor)
-            <x-primary-button :href="route('vendor.vendor-profile.create')">
+        @if (!$shop)
+            <x-primary-button :href="route('vendor.shop.create')">
                 <span class="material-symbols-outlined small-icon"> add </span>
                 <span>Create New</span>
             </x-primary-button>
         @else
-            <x-info-button :href="route('vendor.vendor-profile.edit', $vendor->id)">
+            <x-info-button :href="route('vendor.shop.edit', $shop->id)">
                 <span class="material-symbols-outlined small-icon"> add </span>
                 <span>Edit</span>
             </x-info-button>
@@ -22,7 +22,7 @@
             >{{ __('Delete Account') }}</x-danger-button>
 
             <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                <form method="post" action="{{ route('vendor.vendor-profile.destroy', $vendor->id) }}" class="p-6 bg-surface-alt dark:bg-surface-dark-alt">
+                <form method="post" action="{{ route('vendor.shop.destroy', $shop->id) }}" class="p-6 bg-surface-alt dark:bg-surface-dark-alt">
                     @csrf
                     @method('delete')
 
