@@ -21,7 +21,13 @@ class VariantItemDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
-                return view('admin.product.variants.items.partials.actions', compact('item'));
+                if (auth()->user()->role == 'admin') {
+                    return view('admin.product.variants.items.partials.actions', compact('item'));
+                }
+
+                if (auth()->user()->role == 'vendor') {
+                    return view('vendor.product.variants.items.partials.actions', compact('item'));
+                }
             })
             ->addColumn('is_default', function ($query) {
                 $statusIcon = $query->is_default == 1

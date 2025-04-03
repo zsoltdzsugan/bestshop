@@ -21,7 +21,13 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($product) {
-                return view('admin.product.partials.actions', compact('product'));
+                if (auth()->user()->role == 'admin') {
+                    return view('admin.product.partials.actions', compact('product'));
+                }
+
+                if (auth()->user()->role == 'vendor') {
+                    return view('vendor.product.partials.actions', compact('product'));
+                }
             })
             ->addColumn('thumb_image', function ($product) {
                 return '<img src="'.asset('storage/'.$product->thumb_image).'" width="100">';
@@ -42,7 +48,15 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->newQuery();
+        if (auth()->user()->role == 'admin') {
+            return $model->newQuery();
+        }
+
+        if (auth()->user()->role == 'vendor') {
+            return $model->newQuery()->where('shop_id', auth()->user()->shop->id);
+        }
+
+        abort(403, 'Unauthorized');
     }
 
     /**
@@ -77,7 +91,7 @@ class ProductDataTable extends DataTable
             Column::make('thumb_image')->orderable(false),
             Column::make('slug'),
             Column::make('name'),
-            Column::make('vendor_id'),
+            Column::make('shop_id'),
             Column::make('category_id'),
             Column::make('sub_category_id'),
             Column::make('child_category_id'),
