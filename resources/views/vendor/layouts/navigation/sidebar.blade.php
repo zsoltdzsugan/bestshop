@@ -37,7 +37,7 @@
                 </x-nav-link>
 
                 <!-- Manage Products -->
-                <div x-data="{ isExpanded: {{ json_encode(setActive(['vendor.product.*'])) }} }" class="flex flex-col">
+                <div x-data="{ isExpanded: {{ json_encode(setActive(['vendor.brand.*', 'vendor.product.*'])) }} }" class="flex flex-col">
                     <button type="button" x-on:click="isExpanded = ! isExpanded" id="user-management-btn" aria-controls="user-management" x-bind:aria-expanded="isExpanded ? 'true' : 'false'" class="flex items-center justify-between rounded-radius gap-2 px-2 py-1.5 text-sm font-medium underline-offset-2 focus:outline-hidden focus-visible:underline" x-bind:class="isExpanded ? 'text-on-surface-strong bg-primary/10 dark:text-on-surface-dark-strong dark:bg-primary-dark/10' : 'text-on-surface hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark dark:hover:text-on-surface-dark-strong dark:hover:bg-primary-dark/5'">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0" aria-hidden="true">
                             <path d="M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM14.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 0 0-1.588-3.755 4.502 4.502 0 0 1 5.874 2.636.818.818 0 0 1-.36.98A7.465 7.465 0 0 1 14.5 16Z"/>
@@ -50,10 +50,10 @@
 
                     <ul x-cloak x-collapse x-show="isExpanded" aria-labelledby="user-management-btn" id="user-management">
                         <li class="px-1 py-0.5 first:mt-2">
-                            <x-nav-link href="{{ route('vendor.dashboard') }}" :active="request()->routeIs('admin.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Brand</x-nav-link>
+                            <x-nav-link href="{{ route('vendor.product.index') }}" :active="request()->routeIs('vendor.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Brand</x-nav-link>
                         </li>
                         <li class="px-1 py-0.5 first:mt-2">
-                            <x-nav-link href="{{ route('vendor.dashboard') }}" :active="request()->routeIs('admin.brand.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Product</x-nav-link>
+                            <x-nav-link href="{{ route('vendor.product.index') }}" :active="request()->routeIs('vendor.product.*')" class="flex items-center rounded-radius gap-2 px-4 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Product</x-nav-link>
                         </li>
                     </ul>
                 </div>
