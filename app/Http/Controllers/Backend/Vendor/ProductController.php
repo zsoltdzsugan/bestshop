@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Admin;
+namespace App\Http\Controllers\Backend\Vendor;
 
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
@@ -13,6 +13,7 @@ use App\Models\Shop;
 use App\Services\ImageService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Str;
 
 class ProductController extends Controller
@@ -29,7 +30,7 @@ class ProductController extends Controller
      */
     public function index(ProductDataTable $dataTable): mixed
     {
-        return $dataTable->render('admin.product.index');
+        return $dataTable->render('vendor.product.index');
     }
 
     /**
@@ -38,10 +39,10 @@ class ProductController extends Controller
     public function create(): View
     {
         $categories = Category::all();
-        $shops = Shop::all();
+        $shop = Shop::where('user_id', Auth::id())->first();
         $brands = Brand::all();
 
-        return view('admin.product.create', compact('categories', 'shops', 'brands'));
+        return view('vendor.product.create', compact('categories', 'shop', 'brands'));
     }
 
     /**
@@ -55,7 +56,6 @@ class ProductController extends Controller
         $data['is_new'] = $request->has('is_new') ? 1 : 0;
         $data['is_best'] = $request->has('is_best') ? 1 : 0;
         $data['is_featured'] = $request->has('is_featured') ? 1 : 0;
-        $data['is_approved'] = $request->has('is_approved') ? 1 : 0;
 
         if ($request->hasFile('thumb_image')) {
             $data['thumb_image'] = $this->imageService->upload($request->file('thumb_image'), 'product-images');
@@ -66,7 +66,7 @@ class ProductController extends Controller
         $product->slug = Str::slug($request->name);
         $product->save();
 
-        return redirect()->route('admin.product.index')->with('status', 'product-created');
+        return redirect()->route('vendor.product.index')->with('status', 'product-created');
     }
 
     /**
@@ -83,11 +83,16 @@ class ProductController extends Controller
     public function edit(string $id): View
     {
         $product = Product::findOrFail($id);
-        $shops = Shop::all();
+
+        if ($product->shop_id !== auth()->user()->shop->id) {
+            abort(403, 'Unauthorized.');
+        }
+
+        $shop = Shop::where('user_id', Auth::id())->first();
         $categories = Category::all();
         $brands = Brand::all();
 
-        return view('admin.product.edit', compact('product', 'shops', 'categories', 'brands'));
+        return view('vendor.product.edit', compact('product', 'shop', 'categories', 'brands'));
     }
 
     /**
@@ -98,11 +103,14 @@ class ProductController extends Controller
         $data = $request->validated();
         $product = Product::findOrFail($id);
 
+        if ($product->shop_id !== auth()->user()->shop->id) {
+            abort(403, 'Unauthorized.');
+        }
+
         $data['is_top'] = $request->has('is_top') ? 1 : 0;
         $data['is_new'] = $request->has('is_new') ? 1 : 0;
         $data['is_best'] = $request->has('is_best') ? 1 : 0;
         $data['is_featured'] = $request->has('is_featured') ? 1 : 0;
-        $data['is_approved'] = $request->has('is_approved') ? 1 : 0;
 
         if ($request->hasFile('thumb_image')) {
             $this->imageService->delete($product->thumb_image);
@@ -113,7 +121,7 @@ class ProductController extends Controller
         $product->slug = Str::slug($request->name);
         $product->save();
 
-        return redirect()->route('admin.product.index')->with('status', 'product-updated');
+        return redirect()->route('vendor.product.index')->with('status', 'product-updated');
     }
 
     /**
@@ -122,6 +130,11 @@ class ProductController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
+
+        if ($product->shop_id !== auth()->user()->shop->id) {
+            abort(403, 'Unauthorized.');
+        }
+
         $productImages = ImageGallery::where('product_id', $id)->get();
 
         $this->imageService->delete($product->thumb_image);
@@ -135,6 +148,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('admin.product.index')->with('status', 'product-deleted');
+        return redirect()->route('vendor.product.index')->with('status', 'product-deleted');
     }
 }
