@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\Product\VariantItemStoreRequest;
 use App\Models\Product;
 use App\Models\Product\Variant;
 use App\Models\Product\VariantItem;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class VariantItemController extends Controller
@@ -16,7 +15,7 @@ class VariantItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(VariantItemDataTable $dataTable, Product $product, Variant $variant): Mixed
+    public function index(VariantItemDataTable $dataTable, Product $product, Variant $variant): mixed
     {
         return $dataTable->with('variantId', $variant->id)->render('admin.product.variants.items.index', compact('product', 'variant'));
     }
@@ -37,7 +36,7 @@ class VariantItemController extends Controller
         $data = $request->validated();
         $data['is_default'] = $request->has('is_default') ? 1 : 0;
 
-        $variantItem = new VariantItem();
+        $variantItem = new VariantItem;
         $variantItem->fill($data);
         $variantItem->save();
 

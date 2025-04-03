@@ -22,7 +22,7 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SliderDataTable $dataTable): Mixed
+    public function index(SliderDataTable $dataTable): mixed
     {
         return $dataTable->render('admin.slider.index');
     }
@@ -46,7 +46,7 @@ class SliderController extends Controller
             $data['banner'] = $this->imageService->upload($request->file('banner'), 'sliders');
         }
 
-        $slider = new Slider();
+        $slider = new Slider;
         $slider->fill($data);
         $slider->save();
 
@@ -67,6 +67,7 @@ class SliderController extends Controller
     public function edit(string $id): View
     {
         $slider = Slider::findOrFail($id);
+
         return view('admin.slider.edit', compact('slider'));
     }
 
@@ -99,7 +100,6 @@ class SliderController extends Controller
 
         $this->imageService->delete($slider->banner);
         $slider->delete();
-
 
         return redirect()->route('admin.slider.index')->with('status', 'slider-deleted');
     }

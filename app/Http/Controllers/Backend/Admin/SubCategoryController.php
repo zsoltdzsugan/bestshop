@@ -8,7 +8,6 @@ use App\Http\Requests\Backend\SubCategoryStoreRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Str;
@@ -18,7 +17,7 @@ class SubCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SubCategoryDataTable $dataTable): Mixed
+    public function index(SubCategoryDataTable $dataTable): mixed
     {
         return $dataTable->render('admin.sub-category.index');
     }
@@ -29,6 +28,7 @@ class SubCategoryController extends Controller
     public function create(): View
     {
         $categories = Category::all();
+
         return view('admin.sub-category.create', compact('categories'));
     }
 
@@ -39,7 +39,7 @@ class SubCategoryController extends Controller
     {
         $data = $request->validated();
 
-        $subCategory = new SubCategory();
+        $subCategory = new SubCategory;
         $subCategory->fill($data);
         $subCategory->slug = Str::slug($request->name);
         $subCategory->save();
@@ -84,7 +84,7 @@ class SubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): Mixed
+    public function destroy(string $id): mixed
     {
         $subCategory = SubCategory::findOrFail($id);
         $childCategory = SubCategory::where('sub_category_id', $subCategory->id)->count();

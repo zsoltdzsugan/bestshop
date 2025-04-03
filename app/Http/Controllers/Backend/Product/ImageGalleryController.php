@@ -26,6 +26,7 @@ class ImageGalleryController extends Controller
     {
         $product = Product::findOrFail($id);
         $images = ImageGallery::all()->where('product_id', $id);
+
         return $dataTable->render('admin.product.images.index', compact('product', 'images'));
     }
 

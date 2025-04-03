@@ -26,6 +26,7 @@ class VendorProfileController extends Controller
     public function index(Request $request): View
     {
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
+
         return view('vendor.vendor-profile.index', compact('vendor'));
     }
 
@@ -49,7 +50,7 @@ class VendorProfileController extends Controller
             $data['banner'] = $this->imageService->upload($request->file('banner'), 'banners');
         }
 
-        $vendor = new Vendor();
+        $vendor = new Vendor;
         $vendor->fill($data);
         $vendor['user_id'] = $user_id;
         $vendor->save();
@@ -71,6 +72,7 @@ class VendorProfileController extends Controller
     public function edit(string $id): View
     {
         $vendor = Vendor::findOrFail($id);
+
         return view('vendor.vendor-profile.edit', compact('vendor'));
     }
 

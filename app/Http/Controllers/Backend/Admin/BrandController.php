@@ -9,7 +9,6 @@ use App\Models\Brand;
 use App\Services\ImageService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Str;
 
 class BrandController extends Controller
@@ -24,7 +23,7 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(BrandDataTable $dataTables): Mixed
+    public function index(BrandDataTable $dataTables): mixed
     {
         return $dataTables->render('admin.brand.index');
     }
@@ -48,7 +47,7 @@ class BrandController extends Controller
             $data['logo'] = $this->imageService->upload($request->file('logo'), 'logos');
         }
 
-        $brand = new Brand();
+        $brand = new Brand;
         $brand->fill($data);
         $brand->slug = Str::slug($request->name);
         $brand->save();
@@ -70,6 +69,7 @@ class BrandController extends Controller
     public function edit(string $id): View
     {
         $brand = Brand::findOrFail($id);
+
         return view('admin.brand.edit', compact('brand'));
     }
 

@@ -10,5 +10,6 @@ function setActive(array $routes)
             }
         }
     }
+
     return false;
 }

@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class BrandDataTable extends DataTable
@@ -17,7 +15,7 @@ class BrandDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -26,7 +24,7 @@ class BrandDataTable extends DataTable
                 return view('admin.brand.partials.actions', compact('brand'));
             })
             ->addColumn('logo', function ($brand) {
-                return '<img src="' . asset('storage/' . $brand->logo) . '" width="100">';
+                return '<img src="'.asset('storage/'.$brand->logo).'" width="100">';
             })
             ->addColumn('featured', function ($query) {
                 $statusIcon = $query->featured == 1
@@ -72,7 +70,7 @@ class BrandDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -111,6 +109,6 @@ class BrandDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Brand_' . date('YmdHis');
+        return 'Brand_'.date('YmdHis');
     }
 }

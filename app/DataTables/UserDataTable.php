@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class UserDataTable extends DataTable
@@ -17,7 +15,7 @@ class UserDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -26,7 +24,7 @@ class UserDataTable extends DataTable
                 return view('admin.user.partials.actions', compact('user'));
             })
             ->addColumn('image', function ($user) {
-                return '<img src="' . asset('storage/' . $user->image) . '" width="100">';
+                return '<img src="'.asset('storage/'.$user->image).'" width="100">';
             })
             ->addColumn('status', function ($user) {
                 $statusIcon = $user->status == 1
@@ -65,7 +63,7 @@ class UserDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -101,6 +99,6 @@ class UserDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'User_' . date('YmdHis');
+        return 'User_'.date('YmdHis');
     }
 }

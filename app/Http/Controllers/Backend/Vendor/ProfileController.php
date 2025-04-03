@@ -41,7 +41,6 @@ class ProfileController extends Controller
             $request->user()->image = $this->imageService->upload($request->file('image'), 'profile_images');
         }
 
-
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }

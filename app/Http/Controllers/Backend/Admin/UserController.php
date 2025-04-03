@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Services\ImageService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -23,7 +22,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(UserDataTable $dataTable): Mixed
+    public function index(UserDataTable $dataTable): mixed
     {
         return $dataTable->render('admin.user.index');
     }
@@ -34,6 +33,7 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = ['user', 'vendor', 'admin'];
+
         return view('admin.user.create', compact('roles'));
     }
 
@@ -48,7 +48,7 @@ class UserController extends Controller
             $data['image'] = $this->imageService->upload($request->file('image'), 'profile_images');
         }
 
-        $user = new User();
+        $user = new User;
         $user->fill($data);
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
@@ -74,6 +74,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = ['user', 'vendor', 'admin'];
+
         return view('admin.user.edit', compact('user', 'roles'));
     }
 

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])

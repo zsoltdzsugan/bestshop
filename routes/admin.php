@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\Backend\Admin\AdminController;
-use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Backend\Admin\BrandController;
 use App\Http\Controllers\Backend\Admin\CategoryController;
 use App\Http\Controllers\Backend\Admin\ChildCategoryController;
+use App\Http\Controllers\Backend\Admin\ProductController;
+use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\SubCategoryController;
-use App\Http\Controllers\Backend\Admin\VendorController;
 use App\Http\Controllers\Backend\Admin\UserController;
-use App\Http\Controllers\Backend\Admin\ProductController;
+use App\Http\Controllers\Backend\Admin\VendorController;
 use App\Http\Controllers\Backend\Product\ImageGalleryController;
 use App\Http\Controllers\Backend\Product\VariantController;
 use App\Http\Controllers\Backend\Product\VariantItemController;

@@ -18,7 +18,7 @@ class ChildCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ChildCategoryDataTable $dataTable): Mixed
+    public function index(ChildCategoryDataTable $dataTable): mixed
     {
         return $dataTable->render('admin.child-category.index');
     }
@@ -41,7 +41,7 @@ class ChildCategoryController extends Controller
     {
         $data = $request->validated();
 
-        $childCategory = new ChildCategory();
+        $childCategory = new ChildCategory;
         $childCategory->fill($data);
         $childCategory->slug = Str::slug($request->name);
         $childCategory->save();
@@ -98,6 +98,7 @@ class ChildCategoryController extends Controller
     public function getChildcategories(string $subCategoryId): JsonResponse
     {
         $childCategories = ChildCategory::where('sub_category_id', $subCategoryId)->where('status', 1)->get();
+
         return response()->json($childCategories);
     }
 }

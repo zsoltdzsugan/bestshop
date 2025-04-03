@@ -3,14 +3,11 @@
 namespace App\DataTables;
 
 use App\Models\Slider;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class SliderDataTable extends DataTable
@@ -18,7 +15,7 @@ class SliderDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -27,7 +24,7 @@ class SliderDataTable extends DataTable
                 return view('admin.slider.partials.actions', compact('slider'));
             })
             ->addColumn('banner', function ($slider) {
-                return '<img src="' . asset('storage/' . $slider->banner) . '" width="100">';
+                return '<img src="'.asset('storage/'.$slider->banner).'" width="100">';
             })
             ->addColumn('status', function ($slider) {
                 $statusIcon = $slider->status == 1
@@ -66,7 +63,7 @@ class SliderDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -102,6 +99,6 @@ class SliderDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Slider_' . date('YmdHis');
+        return 'Slider_'.date('YmdHis');
     }
 }

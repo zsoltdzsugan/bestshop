@@ -4,13 +4,10 @@ namespace App\DataTables;
 
 use App\Models\ChildCategory;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Illuminate\Support\Carbon;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ChildCategoryDataTable extends DataTable
@@ -18,7 +15,7 @@ class ChildCategoryDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -69,7 +66,7 @@ class ChildCategoryDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -100,6 +97,6 @@ class ChildCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ChildCategory_' . date('YmdHis');
+        return 'ChildCategory_'.date('YmdHis');
     }
 }

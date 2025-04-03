@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\ProductStoreRequest;
 use App\Models\Product;
 use App\Services\ImageService;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Str;
@@ -53,7 +52,7 @@ class ProductController extends Controller
             $data['thumb_image'] = $this->imageService->upload($request->file('thumb_image'), 'product_thumb_images');
         }
 
-        $product = new Product();
+        $product = new Product;
         $product->fill($data);
         $product->slug = Str::slug($request->name);
         $product->save();

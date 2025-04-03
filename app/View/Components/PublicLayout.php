@@ -3,7 +3,6 @@
 namespace App\View\Components;
 
 use App\Models\Category;
-use App\Models\SubCategory;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -30,7 +29,7 @@ class PublicLayout extends Component
             },
             'subCategories.childCategories' => function ($query) {
                 $query->where('status', 1);
-            }
+            },
         ])->get();
 
         return view('layouts.public', compact('categories'));

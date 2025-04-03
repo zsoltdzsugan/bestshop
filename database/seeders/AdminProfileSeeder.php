@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminProfileSeeder extends Seeder
@@ -15,7 +14,7 @@ class AdminProfileSeeder extends Seeder
     public function run(): void
     {
         $user = User::where('email', 'admin@test.com')->first();
-        $vendor = new Vendor();
+        $vendor = new Vendor;
 
         $vendor->banner = 'banners/banner1.jpg';
         $vendor->name = 'Vendor 1';

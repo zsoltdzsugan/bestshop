@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\Vendor;
 use App\Services\ImageService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class VendorController extends Controller
@@ -24,7 +23,7 @@ class VendorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(VendorDataTable $dataTables): Mixed
+    public function index(VendorDataTable $dataTables): mixed
     {
         return $dataTables->render('admin.vendor.index');
     }
@@ -35,6 +34,7 @@ class VendorController extends Controller
     public function create(): View
     {
         $users = User::all();
+
         return view('admin.vendor.create', compact('users'));
     }
 
@@ -49,7 +49,7 @@ class VendorController extends Controller
             $data['banner'] = $this->imageService->upload($request->file('banner'), 'banners');
         }
 
-        $vendor = new Vendor();
+        $vendor = new Vendor;
         $vendor->fill($data);
         $vendor->save();
 
@@ -70,6 +70,7 @@ class VendorController extends Controller
     public function edit(string $id): View
     {
         $vendor = Vendor::findOrFail($id);
+
         return view('admin.vendor.edit', compact('vendor'));
     }
 

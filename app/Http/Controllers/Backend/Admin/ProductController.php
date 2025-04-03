@@ -13,7 +13,6 @@ use App\Models\Vendor;
 use App\Services\ImageService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Str;
 
 class ProductController extends Controller
@@ -28,7 +27,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductDataTable $dataTable): Mixed
+    public function index(ProductDataTable $dataTable): mixed
     {
         return $dataTable->render('admin.product.index');
     }
@@ -41,6 +40,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $vendors = Vendor::all();
         $brands = Brand::all();
+
         return view('admin.product.create', compact('categories', 'vendors', 'brands'));
     }
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
             $data['thumb_image'] = $this->imageService->upload($request->file('thumb_image'), 'product-images');
         }
 
-        $product = new Product();
+        $product = new Product;
         $product->fill($data);
         $product->slug = Str::slug($request->name);
         $product->save();
@@ -86,6 +86,7 @@ class ProductController extends Controller
         $vendors = Vendor::all();
         $categories = Category::all();
         $brands = Brand::all();
+
         return view('admin.product.edit', compact('product', 'vendors', 'categories', 'brands'));
     }
 

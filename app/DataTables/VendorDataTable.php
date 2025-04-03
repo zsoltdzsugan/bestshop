@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class VendorDataTable extends DataTable
@@ -17,7 +15,7 @@ class VendorDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -26,7 +24,7 @@ class VendorDataTable extends DataTable
                 return view('admin.vendor.partials.actions', compact('vendor'));
             })
             ->addColumn('banner', function ($vendor) {
-                return '<img src="' . asset('storage/' . $vendor->banner) . '" width="100">';
+                return '<img src="'.asset('storage/'.$vendor->banner).'" width="100">';
             })
             ->addColumn('status', function ($query) {
                 $statusIcon = $query->status == 1
@@ -65,7 +63,7 @@ class VendorDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -103,6 +101,6 @@ class VendorDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Vendor_' . date('YmdHis');
+        return 'Vendor_'.date('YmdHis');
     }
 }

@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ProductDataTable extends DataTable
@@ -17,7 +15,7 @@ class ProductDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -26,7 +24,7 @@ class ProductDataTable extends DataTable
                 return view('admin.product.partials.actions', compact('product'));
             })
             ->addColumn('thumb_image', function ($product) {
-                return '<img src="' . asset('storage/' . $product->thumb_image) . '" width="100">';
+                return '<img src="'.asset('storage/'.$product->thumb_image).'" width="100">';
             })
             ->addColumn('status', function ($product) {
                 $statusIcon = $product->status == 1
@@ -65,7 +63,7 @@ class ProductDataTable extends DataTable
                 Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
-                Button::make('reload')
+                Button::make('reload'),
             ]);
     }
 
@@ -116,6 +114,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Product_' . date('YmdHis');
+        return 'Product_'.date('YmdHis');
     }
 }

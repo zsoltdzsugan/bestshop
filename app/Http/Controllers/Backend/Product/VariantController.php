@@ -7,16 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Product\VariantStoreRequest;
 use App\Models\Product;
 use App\Models\Product\Variant;
-use App\Models\Product\VariantItem;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class VariantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(VariantDataTable $dataTable, Product $product): Mixed
+    public function index(VariantDataTable $dataTable, Product $product): mixed
     {
         return $dataTable->with('productId', $product->id)->render('admin.product.variants.index', compact('product'));
     }
@@ -27,7 +25,8 @@ class VariantController extends Controller
     public function create(string $id)
     {
         $product = Product::findOrFail($id);
-        return view("admin.product.variants.create", compact('product'));
+
+        return view('admin.product.variants.create', compact('product'));
     }
 
     /**
@@ -37,7 +36,7 @@ class VariantController extends Controller
     {
         $data = $request->validated();
 
-        $variant = new Variant();
+        $variant = new Variant;
         $variant->fill($data);
         $variant->save();
 
@@ -59,6 +58,7 @@ class VariantController extends Controller
     {
         $variant = Variant::findOrFail($variantId);
         $product = Product::findOrFail($productId);
+
         return view('admin.product.variants.edit', compact('product', 'variant'));
     }
 

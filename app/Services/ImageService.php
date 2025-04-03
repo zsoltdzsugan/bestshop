@@ -47,11 +47,11 @@ class ImageService
     {
         // Filter out invalid paths or empty paths
         $validPaths = array_filter($paths, function ($path) {
-            return !empty($path);
+            return ! empty($path);
         });
 
         // Delete multiple files in one call to Storage::delete
-        if (!empty($validPaths)) {
+        if (! empty($validPaths)) {
             Storage::disk('public')->delete($validPaths);
         }
     }

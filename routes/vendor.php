@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\Backend\Vendor\ProductController;
-use App\Http\Controllers\Backend\Vendor\VendorController;
 use App\Http\Controllers\Backend\Vendor\ProfileController;
+use App\Http\Controllers\Backend\Vendor\VendorController;
 use App\Http\Controllers\Backend\Vendor\VendorProfileController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::middleware(['auth', 'role:vendor'])
     ->prefix('vendor')

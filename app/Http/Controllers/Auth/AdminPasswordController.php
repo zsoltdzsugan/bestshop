@@ -20,7 +20,7 @@ class AdminPasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        //$validated = $request->validateWithBag('updatePassword', [
+        // $validated = $request->validateWithBag('updatePassword', [
         //    'current_password' => ['required', 'current_password'],
         //    'password' => [
         //        'required',
@@ -31,8 +31,7 @@ class AdminPasswordController extends Controller
         //        'regex:/[0-9]/',
         //        'regex:/[@$!%*?&]/',
         //    ],
-        //]);
-
+        // ]);
 
         $request->user()->update([
             'password' => Hash::make($validated['password']),
