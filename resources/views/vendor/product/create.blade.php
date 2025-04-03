@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-vendor-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
             {{ __('Create Product') }}
@@ -14,7 +14,7 @@
                 @csrf
             </form>
 
-            <form method="post" action="{{ route('admin.product.store') }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('vendor.product.store') }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
                 <div>
@@ -33,12 +33,9 @@
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div>
-                    <x-input-label for="shop_id" :value="__('Shop')" />
-                    <x-select-input id="shop_id" name="shop_id" class="mt-1 block w-full">
-                        @foreach ($shops as $shop)
-                            <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-                        @endforeach
-                    </x-select-input>
+                    <x-input-label for="shop_id" :value="__('Vendor')" />
+                    <x-text-input id="shop_name" name="shop_name" class="mt-1 block w-full" required value="{{ old('name', $shop->name) }}" readonly />
+                    <x-text-input id="shop_id" name="shop_id" class="mt-1 block w-full" required value="{{ old('name', $shop->id) }}" hidden />
                     <x-input-error class="mt-2" :messages="$errors->get('shop_id')" />
                 </div>
                 <div class="flex w-full gap-4 justify-between max-w-sm">
@@ -168,7 +165,7 @@
                         >{{ __('Created.') }}</p>
                     @endif
 
-                    <x-secondary-button :href="route('admin.product.index')">{{ __('Back') }}</x-secondary-button>
+                    <x-secondary-button :href="route('vendor.product.index')">{{ __('Back') }}</x-secondary-button>
                 </div>
             </form>
         </section>
@@ -191,4 +188,4 @@
         </script>
         @vite('resources/js/categoryDropdown.js')
     @endpush
-</x-admin-layout>
+</x-vendor-layout>

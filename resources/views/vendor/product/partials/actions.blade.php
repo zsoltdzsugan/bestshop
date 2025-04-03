@@ -1,6 +1,6 @@
 <div class="flex space-x-2">
     <!-- Edit Button -->
-    <x-info-button :classType="'info'" :href="route('admin.product.edit', $product->id)">
+    <x-info-button :classType="'info'" :href="route('vendor.product.edit', $product->id)">
         <i class="fa-solid fa-pen-to-square"></i>
     </x-info-button>
 
@@ -16,7 +16,7 @@
 
     <!-- Delete Confirmation Modal -->
     <x-modal name="confirm-product-deletion-{{ $product->id }}" focusable>
-        <form method="POST" action="{{ route('admin.product.destroy', $product->id) }}" class="p-6">
+        <form method="POST" action="{{ route('vendor.product.destroy', $product->id) }}" class="p-6">
             @csrf
             @method('DELETE')
 

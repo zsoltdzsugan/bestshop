@@ -42,13 +42,13 @@
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div>
-                    <x-input-label for="vendor_id" :value="__('Vendor')" />
-                    <x-select-input id="vendor_id" name="vendor_id" class="mt-1 block w-full">
-                        @foreach ($vendors as $vendor)
-                            <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                    <x-input-label for="shop_id" :value="__('Shop')" />
+                    <x-select-input id="shop_id" name="shop_id" class="mt-1 block w-full">
+                        @foreach ($shops as $shop)
+                            <option value="{{ $shop->id }}">{{ $shop->name }}</option>
                         @endforeach
                     </x-select-input>
-                    <x-input-error class="mt-2" :messages="$errors->get('vendor_id')" />
+                    <x-input-error class="mt-2" :messages="$errors->get('shop_id')" />
                 </div>
                 <div class="flex w-full gap-4 justify-between max-w-sm">
                     <div class="w-full">
@@ -143,11 +143,6 @@
                     <x-toggle-input label="Featured Product" id="is_featured" name="is_featured" />
                     <x-input-error class="mt-2" :messages="$errors->get('is_featured')" />
                 </div>
-                <!-- TODO: admin approval for product -->
-                <div>
-                    <x-toggle-input label="Approved Product" id="is_approved" name="is_approved" disabled />
-                    <x-input-error class="mt-2" :messages="$errors->get('is_featured')" />
-                </div>
                 <div>
                     <x-input-label for="status" :value="__('Status')" />
                     <x-select-input id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
@@ -203,6 +198,6 @@
                 }
             }
         </script>
-        @vite('resources/js/subCategoryDropdown.js')
+        @vite('resources/js/categoryDropdown.js')
     @endpush
 </x-admin-layout>

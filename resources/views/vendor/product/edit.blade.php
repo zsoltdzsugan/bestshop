@@ -1,7 +1,7 @@
-<x-admin-layout>
+<x-vendor-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Create Product') }}
+            {{ __('Edit Product') }}
         </h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Update your account's profile information and email address.") }}
@@ -14,17 +14,26 @@
                 @csrf
             </form>
 
-            <form method="post" action="{{ route('admin.product.store') }}" enctype="multipart/form-data" class="space-y-6">
+            <form method="post" action="{{ route('vendor.product.update', $product->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
+                @method('patch')
 
-                <div>
-                    <x-input-label :value="__('Preview')" />
-                    <img class="w-60 max-h-60" name="new-preview" id="new-preview" />
-                    <x-input-error class="mt-2" :messages="$errors->get('new-preview')" />
+                <x-input-label>Preview</x-input-label>
+                <div class="flex gap-8">
+                    <div>
+                        <x-input-label :value="__('Old')" />
+                        <img class="w-60 max-h-60" name="old-preview" id="old-preview" src="{{ asset('storage/' . $product->thumb_image) }}" />
+                        <x-input-error class="mt-2" :messages="$errors->get('old-preview')" />
+                    </div>
+                    <div>
+                        <x-input-label :value="__('New')" />
+                        <img class="w-60 max-h-60" name="new-preview" id="new-preview" />
+                        <x-input-error class="mt-2" :messages="$errors->get('new-preview')" />
+                    </div>
                 </div>
                 <div>
                     <x-input-label for="thumb_image" :value="__('Image')" />
-                    <x-text-input id="thumb_image" name="thumb_image" type="file" class="mt-1 block w-full p-2"  onchange="previewImage(event)"/>
+                    <x-text-input id="thumb_image" name="thumb_image" type="file" class="mt-1 block w-full p-2" onchange="previewImage(event)"/>
                     <x-input-error class="mt-2" :messages="$errors->get('thumb_image')" />
                 </div>
                 <div>
@@ -33,12 +42,9 @@
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
                 <div>
-                    <x-input-label for="shop_id" :value="__('Shop')" />
-                    <x-select-input id="shop_id" name="shop_id" class="mt-1 block w-full">
-                        @foreach ($shops as $shop)
-                            <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-                        @endforeach
-                    </x-select-input>
+                    <x-input-label for="shop_id" :value="__('Vendor')" />
+                    <x-text-input id="shop_name" name="shop_name" class="mt-1 block w-full" readonly value="{{ old('name', $shop->name) }}" />
+                    <x-text-input id="shop_id" name="shop_id" class="mt-1 block w-full" hidden value="{{ old('shop_id', $shop->id) }}" />
                     <x-input-error class="mt-2" :messages="$errors->get('shop_id')" />
                 </div>
                 <div class="flex w-full gap-4 justify-between max-w-sm">
@@ -156,9 +162,9 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <x-primary-button>{{ __('Create') }}</x-primary-button>
+                    <x-primary-button>{{ __('Update') }}</x-primary-button>
 
-                    @if (session('status') === 'product-created')
+                    @if (session('status') === 'product-updated')
                         <p
                             x-data="{ show: true }"
                             x-show="show"
@@ -168,7 +174,7 @@
                         >{{ __('Created.') }}</p>
                     @endif
 
-                    <x-secondary-button :href="route('admin.product.index')">{{ __('Back') }}</x-secondary-button>
+                    <x-secondary-button :href="route('vendor.product.index')">{{ __('Back') }}</x-secondary-button>
                 </div>
             </form>
         </section>
@@ -191,4 +197,4 @@
         </script>
         @vite('resources/js/categoryDropdown.js')
     @endpush
-</x-admin-layout>
+</x-vendor-layout>
