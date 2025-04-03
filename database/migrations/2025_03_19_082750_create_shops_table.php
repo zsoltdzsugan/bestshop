@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('fb_link')->nullable();
             $table->text('x_link')->nullable();
             $table->text('ig_link')->nullable();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('child_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->integer('sub_category_id');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sub_category_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('slug');
             $table->boolean('status');
