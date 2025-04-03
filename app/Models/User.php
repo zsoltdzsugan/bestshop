@@ -13,9 +13,9 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    public function vendor(): HasOne
+    public function shop(): HasOne
     {
-        return $this->hasOne(Vendor::class);
+        return $this->hasOne(Shop::class);
     }
 
     /**

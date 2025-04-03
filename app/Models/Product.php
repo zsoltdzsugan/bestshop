@@ -30,7 +30,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'thumb_image',
-        'vendor_id',
+        'shop_id',
         'category_id',
         'sub_category_id',
         'child_category_id',

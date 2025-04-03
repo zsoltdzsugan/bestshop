@@ -26,7 +26,7 @@ class ProductStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:200'],
             'thumb_image' => ['nullable', 'file', 'image', 'max:2048'],
-            'vendor_id' => ['required'],
+            'shop_id' => ['required'],
             'category_id' => ['required'],
             'sub_category_id' => ['nullable'],
             'child_category_id' => ['nullable'],
