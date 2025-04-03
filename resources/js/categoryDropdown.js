@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     categorySelect.addEventListener('change', function () {
         let id = this.value;
 
-        fetch(`/admin/get-subcategory/${id}`)
+        fetch(`/api/get-subcategories/${id}`)
             .then(response => response.json())
             .then(data => {
                 console.log("Subcategory DATA:", data);
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!childCategorySelect) return; // Skip if no child category dropdown
 
-            fetch(`/admin/get-childcategory/${id}`)
+            fetch(`/api/get-childcategories/${id}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log("Childcategory DATA:", data);
