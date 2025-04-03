@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Product;
+namespace App\Http\Controllers\Backend\Vendor\Product;
 
 use App\DataTables\Product\ImageGalleryDataTable;
 use App\Http\Controllers\Controller;
@@ -25,9 +25,14 @@ class ImageGalleryController extends Controller
     public function index(ImageGalleryDataTable $dataTable, string $id)
     {
         $product = Product::findOrFail($id);
+
+        if ($product->shop_id !== auth()->user()->shop->id) {
+            abort(403, 'Unauthorized.');
+        }
+
         $images = ImageGallery::all()->where('product_id', $id);
 
-        return $dataTable->render('admin.product.images.index', compact('product', 'images'));
+        return $dataTable->render('vendor.product.images.index', compact('product', 'images'));
     }
 
     /**
@@ -53,7 +58,7 @@ class ImageGalleryController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.product.images.index', $data['product_id'])->with('status', 'images-added-successfully');
+        return redirect()->route('vendor.product.images.index', $data['product_id'])->with('status', 'images-added-successfully');
     }
 
     /**
@@ -87,9 +92,13 @@ class ImageGalleryController extends Controller
     {
         $image = ImageGallery::where('product_id', $productId)->findOrFail($imageId);
 
+        if ($image->product->shop_id !== auth()->user()->shop->id) {
+            abort(403, 'Unauthorized.');
+        }
+
         $this->imageService->delete($image->image);
         $image->delete();
 
-        return redirect()->route('admin.product.images.index', $productId)->with('status', 'product-image-deleted');
+        return redirect()->route('vendor.product.images.index', $productId)->with('status', 'product-image-deleted');
     }
 }
