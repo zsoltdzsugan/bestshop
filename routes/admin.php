@@ -2,17 +2,17 @@
 
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\BrandController;
-use App\Http\Controllers\Backend\Admin\CategoryController;
-use App\Http\Controllers\Backend\Admin\ChildCategoryController;
+use App\Http\Controllers\Backend\Admin\Product\ImageGalleryController;
+use App\Http\Controllers\Backend\Admin\Product\VariantController;
+use App\Http\Controllers\Backend\Admin\Product\VariantItemController;
 use App\Http\Controllers\Backend\Admin\ProductController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
-use App\Http\Controllers\Backend\Admin\SliderController;
-use App\Http\Controllers\Backend\Admin\SubCategoryController;
-use App\Http\Controllers\Backend\Admin\UserController;
 use App\Http\Controllers\Backend\Admin\ShopController;
-use App\Http\Controllers\Backend\Product\ImageGalleryController;
-use App\Http\Controllers\Backend\Product\VariantController;
-use App\Http\Controllers\Backend\Product\VariantItemController;
+use App\Http\Controllers\Backend\Admin\SliderController;
+use App\Http\Controllers\Backend\Admin\UserController;
+use App\Http\Controllers\Backend\Category\CategoryController;
+use App\Http\Controllers\Backend\Category\ChildCategoryController;
+use App\Http\Controllers\Backend\Category\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin'])
@@ -30,9 +30,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/slider', SliderController::class);
 
         Route::resource('/category', CategoryController::class);
-        Route::get('/get-subcategory/{categoryId}', [SubCategoryController::class, 'getSubCategories'])->name('get-subcategories');
         Route::resource('/sub-category', SubCategoryController::class);
-        Route::get('/get-childcategory/{subcategoryId}', [ChildCategoryController::class, 'getChildCategories'])->name('get-childcategories');
         Route::resource('/child-category', ChildCategoryController::class);
 
         Route::resource('/brand', BrandController::class);
