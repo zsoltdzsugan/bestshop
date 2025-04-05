@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -26,6 +27,9 @@ class ShopDataTable extends DataTable
             ->addColumn('banner', function ($shop) {
                 return '<img src="'.asset('storage/'.$shop->banner).'" width="100">';
             })
+            ->addColumn('user_id', function ($shop) {
+                return User::findOrFail($shop->user_id)->name;
+            })
             ->addColumn('status', function ($query) {
                 $statusIcon = $query->status == 1
                     ? '<i class="fa-solid fa-circle text-success"></i>'
@@ -33,7 +37,7 @@ class ShopDataTable extends DataTable
 
                 return $statusIcon;
             })
-            ->rawColumns(['banner', 'status', 'action'])
+            ->rawColumns(['banner', 'status', 'user_id', 'action'])
             ->setRowId('id');
     }
 
@@ -86,6 +90,7 @@ class ShopDataTable extends DataTable
             Column::make('fb_link'),
             Column::make('ig_link'),
             Column::make('x_link'),
+            Column::make('user_id')->title('Created By'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
