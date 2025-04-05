@@ -1,4 +1,4 @@
-<div class="flex justify-between gap-2">
+<div class="flex justify-between items-center gap-2">
     <!-- Edit Button -->
     <x-button variant="info" :href="route('admin.product.edit', $product->id)">
         <span class="material-symbols-outlined information-icon"> edit_square </span>

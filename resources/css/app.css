@@ -547,10 +547,16 @@ table.dataTable td {
     vertical-align: middle;
     text-align: left;
 }
-table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-status, table.dataTable td.dt-type-date, table.dataTable thead {
+table.dataTable td.dt-type-numeric,
+table.dataTable td.dt-type-status,
+table.dataTable td.dt-type-date,
+table.dataTable thead {
     text-align: left;
 }
 
-table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc {
+table.dataTable thead tr th.dt-orderable-asc,
+table.dataTable thead tr th.dt-orderable-desc,
+table.dataTable thead tr td.dt-orderable-asc,
+table.dataTable thead tr td.dt-orderable-desc {
     text-align: left;
 }

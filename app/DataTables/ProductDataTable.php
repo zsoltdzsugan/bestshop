@@ -98,11 +98,22 @@ class ProductDataTable extends DataTable
                 Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload'),
+
             ])
             ->parameters([
                 'dom' => 'Bfrtip',
+                'buttons' => [
+                    'export', 'print', 'reload'
+                ],
                 'responsive' => true,
                 'autoWidth' => true,
+                'fixedHeader' => false,
+                'lengthChange' => true,
+                'searching' => true,
+                'paging' => true,
+                'info' => true,
+                'processing' => true,
+                'serverSide' => true,
                 'lengthMenu' => [[10, 25, 50, -1], [10, 25, 50, 'All']],
                 'pageLength' => 10,
                 'language' => [
@@ -112,12 +123,6 @@ class ProductDataTable extends DataTable
                     'infoEmpty' => 'No entries available',
                     'infoFiltered' => '(filtered from _MAX_ total entries)',
                     'search' => 'Search:',
-                    'paginate' => [
-                        'first' => '<i class="fa-solid fa-angles-left"></i>',
-                        'last' => '<i class="fa-solid fa-angles-right"></i>',
-                        'next' => '<i class="fa-solid fa-angle-right"></i>',
-                        'previous' => '<i class="fa-solid fa-angle-left"></i>',
-                    ],
                 ],
             ])
             ->setTableAttributes([
@@ -132,28 +137,30 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('thumb_image')->orderable(false)->title('Image'),
-            Column::make('name'),
-            Column::make('brand_id')->title('Brand'),
-            Column::make('sku'),
-            Column::make('quantity'),
-            Column::make('price'),
-            Column::make('sale_price'),
-            Column::make('sale_start'),
-            Column::make('sale_end'),
-            Column::make('is_top')->title('Top'),
-            Column::make('is_new')->title('New'),
-            Column::make('is_best')->title('Best'),
-            Column::make('is_featured')->title('Featured'),
-            Column::make('status')->addClass('dt-type-status'),
+            Column::make('id')->width(50),
+            Column::make('thumb_image')
+                ->orderable(false)
+                ->addClass('dt-type-image')
+                ->title('Image'),
+            Column::make('name')->width(150),
+            Column::make('brand_id')->title('Brand')->width(150),
+            Column::make('sku')->width(100),
+            Column::make('quantity')->width(75),
+            Column::make('price')->width(75),
+            Column::make('sale_price')->width(75),
+            Column::make('sale_start')->addClass('dt-type-date')->width(100),
+            Column::make('sale_end')->addClass('dt-type-date')->width(100),
+            Column::make('is_top')->title('Top')->width(50),
+            Column::make('is_new')->title('New')->width(50),
+            Column::make('is_best')->title('Best')->width(50),
+            Column::make('is_featured')->title('Featured')->width(75),
+            Column::make('status')->addClass('dt-type-status')->width(50),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(100)
                 ->orderable(false)
                 ->searchable(false)
-                ->addClass('text-center'),
+                ->addClass('text-center dt-type-action')->width(175),
         ];
     }
 

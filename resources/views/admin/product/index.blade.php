@@ -16,6 +16,11 @@
     </div>
 
     @push('scripts')
+        {{-- composer require yajra/laravel-datatables-buttons:"^12.0" --}}
+        {{-- need to publish php artisan vendor:publish --tag=datatables-buttons --}}
+        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css"> --}}
+        {{-- <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script> --}}
+        {{-- <script src="/vendor/datatables/buttons.server-side.js"></script> --}}
         {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     @endpush
 </x-admin-layout>
