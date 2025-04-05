@@ -7,10 +7,10 @@
     </x-slot>
 
     <div class="flex justify-end items-center px-4">
-        <x-primary-button :href="route('vendor.product.variants.create', $product->id)">
+        <x-button variant="primary" href="{{ route('vendor.product.variants.create', $product->id) }}">
             <span class="material-symbols-outlined small-icon"> add </span>
             <span>Create New</span>
-        </x-primary-button>
+        </x-button>
     </div>
 
     <div class="overflow-hidden w-full px-4 pt-8 pb-4 overflow-x-auto rounded-radius bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark">

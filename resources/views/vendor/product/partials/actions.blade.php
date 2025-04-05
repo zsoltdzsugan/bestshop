@@ -1,16 +1,17 @@
 <div class="flex space-x-2">
     <!-- Edit Button -->
-    <x-info-button :classType="'info'" :href="route('vendor.product.edit', $product->id)">
+    <x-button variant="secondary" :classType="'info'" :href="route('vendor.product.edit', $product->id)">
         <i class="fa-solid fa-pen-to-square"></i>
-    </x-info-button>
+    </x-button>
 
     <!-- Delete Button -->
-    <x-danger-button
+    <x-button
+        variant="danger"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion-{{ $product->id }}')"
     >
         <i class="fa-solid fa-trash"></i>
-    </x-danger-button>
+    </x-button>
 
     <x-settings :product="$product" :owner="auth()->user()->role" />
 
@@ -40,13 +41,13 @@
             @endif
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-button variant="secondary" x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-button>
 
-                <x-danger-button class="ms-3">
+                <x-button variant="danger" class="ms-3">
                     {{ __('Delete') }}
-                </x-danger-button>
+                </x-button>
             </div>
         </form>
     </x-modal>

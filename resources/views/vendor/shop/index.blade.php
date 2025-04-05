@@ -7,19 +7,22 @@
 
     <div class="flex justify-end items-center px-4">
         @if (!$shop)
-            <x-primary-button :href="route('vendor.shop.create')">
+            <x-button variant="primary" href="{{ route('vendor.shop.create') }}">
                 <span class="material-symbols-outlined small-icon"> add </span>
                 <span>Create New</span>
-            </x-primary-button>
+            </x-button>
         @else
-            <x-info-button :href="route('vendor.shop.edit', $shop->id)">
+            <x-button variant="info" href="{{ route('vendor.shop.edit', $shop->id) }}">
                 <span class="material-symbols-outlined small-icon"> add </span>
                 <span>Edit</span>
-            </x-info-button>
-            <x-danger-button
+            </x-button>
+            <x-button
+                variant="danger"
                 x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-            >{{ __('Delete Account') }}</x-danger-button>
+            >
+                {{ __('Delete Account') }}
+            </x-button>
 
             <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
                 <form method="post" action="{{ route('vendor.shop.destroy', $shop->id) }}" class="p-6 bg-surface-alt dark:bg-surface-dark-alt">
