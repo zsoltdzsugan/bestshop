@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -22,7 +23,11 @@ class ProductDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($product) {
                 if (auth()->user()->role == 'admin') {
-                    return view('admin.product.partials.actions', compact('product'));
+                    if (request()->routeIs('admin.product.*') && ! request()->routeIs('admin.product.pending.*')) {
+                        return view('admin.product.partials.actions', compact('product'));
+                    }
+
+                    return view('admin.product.pending.partials.actions', compact('product'));
                 }
 
                 if (auth()->user()->role == 'vendor') {
@@ -32,6 +37,15 @@ class ProductDataTable extends DataTable
             ->addColumn('thumb_image', function ($product) {
                 return '<img src="'.asset('storage/'.$product->thumb_image).'" width="100">';
             })
+            ->addColumn('sale_start', function ($product) {
+                return Carbon::parse($product->sale_start)->format('Y M d');
+            })
+            ->addColumn('sale_end', function ($product) {
+                return Carbon::parse($product->sale_start)->format('Y M d');
+            })
+            ->addColumn('brand_id', function ($product) {
+                return $product->brand->name;
+            })
             ->addColumn('status', function ($product) {
                 $statusIcon = $product->status == 1
                     ? '<i class="fa-solid fa-circle text-success"></i>'
@@ -39,7 +53,7 @@ class ProductDataTable extends DataTable
 
                 return $statusIcon;
             })
-            ->rawColumns(['thumb_image', 'status', 'action'])
+            ->rawColumns(['thumb_image', 'status', 'action', 'sale_start', 'sale_end'])
             ->setRowId('id');
     }
 
@@ -48,11 +62,17 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        if (auth()->user()->role == 'admin') {
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            if (request()->routeIs('admin.product.pending.*')) {
+                return $model->newQuery()->where('is_approved', 0);
+            }
+
             return $model->newQuery();
         }
 
-        if (auth()->user()->role == 'vendor') {
+        if ($user->role === 'vendor') {
             return $model->newQuery()->where('shop_id', auth()->user()->shop->id);
         }
 
@@ -67,9 +87,9 @@ class ProductDataTable extends DataTable
         return $this->builder()
             ->setTableId('product-table')
             ->columns($this->getColumns())
-            ->addTableClass('bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark rounded-radius')
+            ->addTableClass('max-w-screen w-full whitespace-nowrap bg-surface-alt dark:bg-surface-dark-alt text-on-surface dark:text-on-surface-dark rounded-radius text-xs')
             ->minifiedAjax()
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),
@@ -78,6 +98,31 @@ class ProductDataTable extends DataTable
                 Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload'),
+            ])
+            ->parameters([
+                'dom' => 'Bfrtip',
+                'responsive' => true,
+                'autoWidth' => true,
+                'lengthMenu' => [[10, 25, 50, -1], [10, 25, 50, 'All']],
+                'pageLength' => 10,
+                'language' => [
+                    'lengthMenu' => '_MENU_',
+                    'zeroRecords' => 'No records found',
+                    'info' => 'Showing _START_ to _END_ of _TOTAL_ entries',
+                    'infoEmpty' => 'No entries available',
+                    'infoFiltered' => '(filtered from _MAX_ total entries)',
+                    'search' => 'Search:',
+                    'paginate' => [
+                        'first' => '<i class="fa-solid fa-angles-left"></i>',
+                        'last' => '<i class="fa-solid fa-angles-right"></i>',
+                        'next' => '<i class="fa-solid fa-angle-right"></i>',
+                        'previous' => '<i class="fa-solid fa-angle-left"></i>',
+                    ],
+                ],
+            ])
+            ->setTableAttributes([
+                'class' => 'table table-striped table-bordered dt-responsive nowrap',
+                'style' => 'width:100%',
             ]);
     }
 
@@ -88,31 +133,20 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('thumb_image')->orderable(false),
-            Column::make('slug'),
+            Column::make('thumb_image')->orderable(false)->title('Image'),
             Column::make('name'),
-            Column::make('shop_id'),
-            Column::make('category_id'),
-            Column::make('sub_category_id'),
-            Column::make('child_category_id'),
-            Column::make('brand_id'),
+            Column::make('brand_id')->title('Brand'),
             Column::make('sku'),
             Column::make('quantity'),
             Column::make('price'),
             Column::make('sale_price'),
             Column::make('sale_start'),
             Column::make('sale_end'),
-            Column::make('short_description'),
-            Column::make('long_description'),
-            Column::make('video_link'),
-            Column::make('is_top'),
-            Column::make('is_new'),
-            Column::make('is_best'),
-            Column::make('is_featured'),
-            Column::make('is_approved'),
+            Column::make('is_top')->title('Top'),
+            Column::make('is_new')->title('New'),
+            Column::make('is_best')->title('Best'),
+            Column::make('is_featured')->title('Featured'),
             Column::make('status')->addClass('dt-type-status'),
-            Column::make('seo_title'),
-            Column::make('seo_description'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

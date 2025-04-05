@@ -291,7 +291,7 @@
         --color-secondary-dark: var(--color-slate-600);
         --color-on-secondary-dark: var(--color-slate-200);
         --color-outline-dark: var(--color-stone-700);
-        --color-outline-dark-strong: var(--color-blue-500);
+        --color-outline-dark-strong: var(--color-stone-300);
 
         /* Shared Colors */
         --color-info: var(--color-sky-600);
@@ -347,8 +347,44 @@
     display: none;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
+}
+
 /** DATATABLE STYLE */
+main table.dataTable {
+    overflow-x: auto;
+}
 /** datatable searchbar  */
+
+.dt-search,
+.dt-paging {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.dt-search {
+    margin-bottom: 1.5rem;
+}
+
+.dt-info {
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+    color: var(--color-on-surface);
+}
+
+.dark .dt-info {
+    color: rgba(161,161,161, 0.75);
+}
+
 #dt-search-0 {
     border: 1px solid var(--color-outline);
     padding: 0.5rem 0.75rem;
@@ -473,6 +509,7 @@ table.dataTable th {
     background-color: var(--color-surface-dark-alt);
 }
 
+/* Odd/Even row background styling */
 table.dataTable tr:nth-child(odd) {
     background-color: var(--color-surface);
 }
@@ -488,6 +525,23 @@ table.dataTable tr:nth-child(even) {
 .dark table.dataTable tr:nth-child(even) {
     background-color: var(--color-surface-dark-even);
 }
+
+table.dataTable thead tr th:first-child,
+table.dataTable tbody tr td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: inherit;
+    z-index: 2 !important;
+}
+
+.dark table.dataTable tbody tr td:first-child {
+    background-color: inherit;
+}
+
+.dark table.dataTable thead tr th:first-child {
+    background-color: var(--color-surface-dark-alt);
+}
+
 
 table.dataTable td {
     vertical-align: middle;
