@@ -1,11 +1,12 @@
 <div class="flex space-x-2">
     <!-- Delete Button -->
-    <x-danger-button
+    <x-button
+        variant="danger"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion-{{ $image->id }}')"
     >
         <i class="fa-solid fa-trash"></i>
-    </x-danger-button>
+    </x-button>
 
     <!-- Delete Confirmation Modal -->
     <x-modal name="confirm-product-deletion-{{ $image->id }}" focusable>
@@ -22,13 +23,13 @@
             </p>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-button variant="secondary" x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-secondary-button>
+                </x-button>
 
-                <x-danger-button class="ms-3">
+                <x-button variant="danger" class="ms-3">
                     {{ __('Delete') }}
-                </x-danger-button>
+                </x-button>
             </div>
         </form>
     </x-modal>

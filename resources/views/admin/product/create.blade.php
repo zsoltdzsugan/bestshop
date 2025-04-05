@@ -135,6 +135,10 @@
                     <x-input-error class="mt-2" :messages="$errors->get('is_featured')" />
                 </div>
                 <div>
+                    <x-toggle-input label="Approve Product" id="is_approved" name="is_approved" />
+                    <x-input-error class="mt-2" :messages="$errors->get('is_approved')" />
+                </div>
+                <div>
                     <x-input-label for="status" :value="__('Status')" />
                     <x-select-input id="status" name="status" class="mt-1 block w-full" value="{{ old('status') }}">
                         <option value="1">Active</option>

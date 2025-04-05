@@ -1,16 +1,15 @@
 <x-admin-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Child-Category') }}
+    @slot('header')
+        <h2 class="font-semibold text-xl leading-tight text-on-surface dark:text-on-surface-dark">
+            {{ __('Child Categories') }}
         </h2>
-    </x-slot>
-
-    <div class="flex justify-end items-center px-4">
-        <x-primary-button :href="route('admin.child-category.create')">
-            <span class="material-symbols-outlined small-icon"> add </span>
-            <span>Create New</span>
-        </x-primary-button>
-    </div>
+    @endslot
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        {{ __("Manage Child Categories") }}
+    </p>
+    @slot('linkTo')
+        {{ route('admin.child-category.create') }}
+    @endslot
 
     <div class="overflow-hidden w-full px-4 pt-8 pb-4 overflow-x-auto rounded-radius">
         {{ $dataTable->table() }}

@@ -1,17 +1,19 @@
 <x-admin-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Product variant items') }}
-        </h2>
-        <p>Product: {{ $product->name }}</p>
-    </x-slot>
+    @slot('header')
+        <h2 class="font-semibold text-xl leading-tight text-on-surface dark:text-on-surface-dark">
+            {{ __('Product Variant Items') }}
 
-    <div class="flex justify-end items-center px-4">
-        <x-primary-button :href="route('admin.product.variants.items.create', ['product' => $product->id, 'variant' => $variant->id])">
-            <span class="material-symbols-outlined small-icon"> add </span>
-            <span>Create New</span>
-        </x-primary-button>
-    </div>
+        </h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {{ __("Product: ". $product->name) }}
+        </p>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {{ __("Variant: ". $variant->name) }}
+        </p>
+    @endslot
+    @slot('linkTo')
+        {{ route('admin.product.variants.items.create', ['product' => $product->id, 'variant' => $variant->id]) }}
+    @endslot
 
     <div class="overflow-hidden w-full px-4 pt-8 pb-4 overflow-x-auto rounded-radius bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark">
         {{ $dataTable->table() }}

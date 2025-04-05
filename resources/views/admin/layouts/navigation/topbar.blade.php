@@ -1,27 +1,44 @@
-<nav class="sticky top-0 z-10 flex items-center justify-between border-b border-outline bg-surface-alt px-4 py-2 dark:border-outline-dark dark:bg-surface-dark-alt" aria-label="top navibation bar">
-
-    <!-- sidebar toggle button for small screens  -->
-    <button type="button" class="md:hidden inline-block text-on-surface dark:text-on-surface-dark" x-on:click="sidebarIsOpen = true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-5" aria-hidden="true">
-            <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2z"/>
-        </svg>
-        <span class="sr-only">sidebar toggle</span>
-    </button>
+<nav class="sticky top-0 z-10 flex items-center justify-between bg-surface-alt px-4 py-2 dark:bg-surface-dark-alt" aria-label="top navibation bar">
 
     <!-- breadcrumbs  -->
-    <nav class="text-sm inline-flex text-on-surface dark:text-on-surface-dark" aria-label="breadcrumb">
-        <ol class="flex h-full flex-wrap items-center">
-        <li class="flex items-center gap-1">
-            <a href="#" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Dashboard</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" class="size-4" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-            </svg>
-        </li>
+    @php
+        $segments = array_slice(request()->segments(), 1); // skip 'admin'
+        $url = url('/admin'); // base admin path
+    @endphp
 
-        <li class="flex items-center gap-1 font-bold text-on-surface-strong dark:text-on-surface-dark-strong" aria-current="page">Marketing</li>
+    <nav class="text-sm font-medium text-on-surface dark:text-on-surface-dark" aria-label="breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1">
+            <li class="flex items-center gap-1">
+                <a href="{{ url('/admin/dashboard') }}" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Home</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2" stroke="currentColor" class="size-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+            </li>
+
+            @foreach ($segments as $index => $segment)
+                @php
+                    $url .= '/' . $segment;
+                    $isLast = $loop->last;
+                    $label = ucfirst(str_replace('-', ' ', $segment));
+                @endphp
+
+                <li class="flex items-center gap-1">
+                    @if (!$isLast)
+                        <a href="{{ $url }}" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">
+                            {{ $label }}
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2" stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    @else
+                        <span class="text-on-surface-strong font-bold dark:text-on-surface-dark-strong">
+                            {{ $label }}
+                        </span>
+                    @endif
+                </li>
+            @endforeach
         </ol>
     </nav>
-
 
     <!-- Profile Menu  -->
     <div x-data="{ userDropdownIsOpen: false }" class="relative" x-on:keydown.esc.window="userDropdownIsOpen = false">
