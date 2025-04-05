@@ -34,7 +34,7 @@ return new class extends Migration
             $table->boolean('is_new')->nullable()->default(0);
             $table->boolean('is_best')->nullable()->default(0);
             $table->boolean('is_featured')->nullable()->default(0);
-            $table->integer('is_approved')->nullable()->default(0);
+            $table->integer('is_approved')->default(0);
             $table->boolean('status');
             $table->string('seo_title')->nullable();
             $table->text('seo_description')->nullable();

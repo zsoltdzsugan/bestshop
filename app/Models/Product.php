@@ -6,11 +6,17 @@ use App\Models\Product\ImageGallery;
 use App\Models\Product\Variant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
     use HasFactory;
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
+    }
 
     public function images(): HasMany
     {
@@ -48,6 +54,7 @@ class Product extends Model
         'is_new',
         'is_best',
         'is_featured',
+        'is_approved',
         'status',
         'seo_title',
         'status',
@@ -69,6 +76,7 @@ class Product extends Model
             'is_new' => 'boolean',
             'is_best' => 'boolean',
             'is_featured' => 'boolean',
+            'is_approved' => 'integer',
             'status' => 'boolean',
         ];
     }

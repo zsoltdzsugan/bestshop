@@ -44,6 +44,7 @@ class ProductStoreRequest extends FormRequest
             'is_new' => ['nullable'],
             'is_best' => ['nullable'],
             'is_featured' => ['nullable'],
+            'is_approved' => ['required'],
             'status' => ['nullable'],
             'seo_title' => ['nullable', 'max:200'],
             'seo_description' => ['nullable', 'max:250'],
