@@ -55,7 +55,7 @@ class ProductController extends Controller
         $data['is_new'] = $request->has('is_new') ? 1 : 0;
         $data['is_best'] = $request->has('is_best') ? 1 : 0;
         $data['is_featured'] = $request->has('is_featured') ? 1 : 0;
-        $data['is_approved'] = $request->has('is_approved') ? 1 : 0;
+        $data['is_approved'] = $request->has('is_approved') == 'on' ? 1 : 0;
 
         if ($request->hasFile('thumb_image')) {
             $data['thumb_image'] = $this->imageService->upload($request->file('thumb_image'), 'product-images');
