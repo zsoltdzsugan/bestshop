@@ -28,11 +28,9 @@
                     Dashboard
                 </x-nav-link>
 
-                <x-nav-link
-                    class="pointer-events-none"
-                    icon="group">
+                <x-dummy-nav-link icon="group">
                     User Management
-                </x-nav-link>
+                </x-dummy-nav-link>
                 <ul class="pl-4.5">
                     <x-nested-nav-link
                         :href="route('admin.user.index')"
@@ -41,23 +39,21 @@
                     </x-nested-nav-link>
                 </ul>
 
-                <x-nav-link
-                    class="pointer-events-none"
-                    icon="tabs">
+                <x-dummy-nav-link icon="tabs">
                     Site Management
-                </x-nav-link>
+                </x-dummy-nav-link>
                 <ul class="pl-4.5">
-                    <x-nav-link class="pl-0 font-semibold pointer-events-none">
+                    <x-dummy-nav-link class="pl-0 font-semibold">
                         Carousels
-                    </x-nav-link>
+                    </x-dummy-nav-link>
                     <x-nested-nav-link
                         :href="route('admin.slider.index')"
                         :active="request()->routeIs('admin.slider.*')">
                         Home Carousel
                     </x-nested-nav-link>
-                    <x-nav-link class="pl-0 font-semibold pointer-events-none">
+                    <x-dummy-nav-link class="pl-0 font-semibold">
                         Categories
-                    </x-nav-link>
+                    </x-dummy-nav-link>
                     <x-nested-nav-link
                         :href="route('admin.category.index')"
                         :active="request()->routeIs('admin.category.*')">
@@ -88,11 +84,9 @@
                     Brands
                 </x-nav-link>
 
-                <x-nav-link
-                    class="pointer-events-none"
-                    icon="package_2">
+                <x-dummy-nav-link icon="package_2">
                     Products
-                </x-nav-link>
+                </x-dummy-nav-link>
                 <ul class="pl-4.5">
                     <x-nested-nav-link
                         :href="route('admin.product.index')"
@@ -160,7 +154,7 @@
             </div>
 
             <!-- Top fade -->
-            <div class="fixed top-28 left-0 z-30 h-10 w-64 pointer-events-none bg-surface-alt dark:bg-surface-dark-alt [mask-image:linear-gradient(to_bottom,var(--color-surface-dark-alt),transparent)]"></div>
+            <div class="fixed top-28 left-0 z-30 mt-1 h-10 w-64 pointer-events-none bg-surface-alt dark:bg-surface-dark-alt [mask-image:linear-gradient(to_bottom,var(--color-surface-dark-alt),transparent)]"></div>
 
             <!-- Bottom fade -->
             <div class="fixed bottom-0 left-0 z-30 h-10 w-64 pointer-events-none bg-surface dark:bg-surface-dark-alt [mask-image:linear-gradient(to_top,var(--color-surface-dark-alt),transparent)]"></div>
