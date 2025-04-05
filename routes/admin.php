@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\BrandController;
 use App\Http\Controllers\Backend\Admin\Product\ImageGalleryController;
+use App\Http\Controllers\Backend\Admin\Product\PendingController;
 use App\Http\Controllers\Backend\Admin\Product\VariantController;
 use App\Http\Controllers\Backend\Admin\Product\VariantItemController;
 use App\Http\Controllers\Backend\Admin\ProductController;
@@ -35,6 +36,11 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('/brand', BrandController::class);
 
+        Route::get('/product/pending', [PendingController::class, 'index'])->name('product.pending.index');
+        Route::get('/product/{product}/pending', [PendingController::class, 'show'])->name('product.pending.show');
+        Route::patch('/product/{product}/pending', [PendingController::class, 'update'])->name('product.pending.update');
+        Route::delete('/product/{product}/pending', [PendingController::class, 'destroy'])->name('product.pending.destroy');
+
         Route::resource('/product', ProductController::class);
 
         Route::resource('/shop', ShopController::class);
@@ -50,6 +56,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/product.variants.items', VariantItemController::class)
             ->parameters(['variants' => 'variant', 'items' => 'item'])
             ->scoped(['variant' => 'id', 'item' => 'id']);
+
     });
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
