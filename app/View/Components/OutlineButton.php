@@ -9,8 +9,11 @@ use Illuminate\View\Component;
 class OutlineButton extends Component
 {
     public string $variant;
+
     public bool $disabled;
+
     public ?string $href;
+
     public string $size;
 
     /**
@@ -54,12 +57,12 @@ class OutlineButton extends Component
 
     public function classes(): string
     {
-        return $this->variantClasses(). ' ' . $this->sizeClasses() . ' inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 text-center rounded-radius font-semibold uppercase tracking-widest shadow-sm  border transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed';
+        return $this->variantClasses().' '.$this->sizeClasses().' inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 text-center rounded-radius font-semibold uppercase tracking-widest shadow-sm  border transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed';
     }
 
     public function behaveAsLink(): bool
     {
-        return $this->href !== null && !$this->disabled;
+        return $this->href !== null && ! $this->disabled;
     }
 
     /**
