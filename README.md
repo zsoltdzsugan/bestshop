@@ -16,22 +16,13 @@
 [![Unlicense License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <a class="w-full flex justify-start items-center text-on-surface dark:text-on-surface-dark block h-auto">
-        <div class="flex gap-2 px-2 items-center text-on-surface dark:text-on-surface-dark">
-            <svg class="size-5 fill-on-surface dark:fill-on-surface-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M168.5 72L256 165l87.5-93-175 0zM383.9 99.1L311.5 176l129 0L383.9 99.1zm50 124.9L256 224 78.1 224 256 420.3 433.9 224zM71.5 176l129 0L128.1 99.1 71.5 176zm434.3 40.1l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152c4.5-6.1 11.7-9.8 19.3-9.8l240 0c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4z"/></svg>
-            <div>
-                <p class="font-bold text-md">BestShop</p>
-                <p class="text-xs text-right">eCommerce</p>
-            </div>
-        </div>
-    </a>
+  <p class="font-bold text-md">BestShop</p>
+  <p class="text-xs text-right">eCommerce</p>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">[**BestShop** — eCommerce](github-url)</h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
@@ -247,6 +238,7 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[github-url]: https://github.com/zsoltdzsugan/bestshop
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
