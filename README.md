@@ -198,8 +198,8 @@ Additional information
 - [x] Own Shop Management
 - [x] Own Product Management
 - Frontend
-- - [x] Main Page
-- - [x] User Dashboard
+- - [x] Main Page design
+- - [x] User Dashboard design
 
 See the [open issues](https://github.com/zsoltdzsugan/bestshop/issues) for a full list of proposed features (and known issues).
 
