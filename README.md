@@ -102,26 +102,41 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+1. **Clone the repository**  
+    ```sh
+    git clone https://github.com/zsoltdzsugan/bestshop.git
+    cd bestshop
+    ```
+2. **Install dependencies**  
+    ```sh
+    composer install
+    npm install
+    ```
+3. **Copy the environment file and genereate application key**  
+    ```sh
+    cp .env.example .env
+    php artisan key:generate
+    ```
+4. **Build and start the containers**  
+    ```sh
+    docker compose up -d
+    ```
+5. **Run migrations and seed database**  
+    ```sh
+    docker compose exec laravel.test php artisan migrate --seed
+    ```
+6. **Link storage**  
+    ```sh
+    docker compose exec laravel.test php artisan storage:link
+    ```
+7. **Run frontend dependencies**  
+    ```sh
+    npm run dev
+    ```
+8. **Access the application**  
+    ```sh
+    http://localhost
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,9 +145,37 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Additional information
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+#### Environment Variables
+```sh
+    APP_NAME=Laravel
+    APP_URL=http://localhost
+    
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=bestshop
+    DB_USERNAME=sail
+    DB_PASSWORD=password
+```
+#### Seeded Test Users
+```sh
+    name: Test Admin
+    username: admin
+    email: admin@test.com
+    password: password
+
+    name: Test Vendor
+    username: vendor
+    email: vendor@test.com
+    password: password
+
+    name: Test User
+    username: user
+    email: user@test.com
+    password: password
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -141,39 +184,23 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] User Authentication
+- Admin Panel
+- [x] Dashboard
+- [x] User Management
+- [ ] Site Management
+- [x] Shops Management
+- [x] Brands Management
+- [x] Product Management
+- Vendor Panel
+- [x] Dashboard
+- [x] Own Shop Management
+- [x] Own Product Management
+- Frontend
+- - [x] Main Page
+- - [x] User Dashboard
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Top contributors:
-
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
-</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
