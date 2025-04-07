@@ -22,7 +22,7 @@
   <p class="font-bold text-md">BestShop</p>
   <p class="text-xs text-right">eCommerce</p>
 
-  <h3 align="center">[![**BestShop** — eCommerce]][github-url]</h3>
+  <h3 align="center"><a href="https://github.com/zsoltdzsugan/bestshop">**bestshop** — ecommerce</a></h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
