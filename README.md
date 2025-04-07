@@ -79,7 +79,7 @@ The site is designed as a multi vendor ecommerce site (similar to amazon), it pr
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![Laravel][Laravel.com]][Laravel-url]
-* [![Blade][blade.com]]
+* [Blade][blade.com]
 * [![AlpineJs][alpine.com]][alpine-url]
 * [![TailwindCSS][tailwind.com]][tailwind-url]
 * [![JQuery][JQuery.com]][JQuery-url]
@@ -233,14 +233,14 @@ Use this space to list resources you find helpful and would like to give credit 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-[blade.com]: https://img.shields.io/badge/Blade-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[blade.com]: https://img.shields.io/badge/Blade-DD0031?style=for-the-badge&logo=blade&logoColor=white
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
-[tailwind.com]: https://img.shields.io/badge/TailwindCSS-00BCFF?style=for-the-badge&logo=laravel&logoColor=white
+[tailwind.com]: https://img.shields.io/badge/TailwindCSS-00BCFF?style=for-the-badge&logo=tailwind&logoColor=white
 [tailwind-url]: https://tailwindcss.com/
-[alpine.com]: https://img.shields.io/badge/AlpineJs-77c1d2?style=for-the-badge&logo=bootstrap&logoColor=white
+[alpine.com]: https://img.shields.io/badge/AlpineJs-77c1d2?style=for-the-badge&logo=alpine&logoColor=white
 [alpine-url]: https://alpinejs.dev/
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[mysql.com]: https://img.shields.io/badge/MySQL-00758f?style=for-the-badge&logo=jquery&logoColor=white
+[mysql.com]: https://img.shields.io/badge/MySQL-00758f?style=for-the-badge&logo=mysql&logoColor=white
 [mysql-url]: https://www.mysql.com/
