@@ -9,13 +9,14 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+<!--
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Unlicense License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
+-->
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -25,7 +26,7 @@
     BestShop is a multi-vendor e-commerce platform built with Laravel.
     <br />
     <br />
-    <a href="https://bestshop-main-bhazak.laravel.cloud">View Current Demo Site</a>
+    <!--<a href="https://bestshop-main-bhazak.laravel.cloud">View Current Demo Site</a>-->
     <!-- &middot; -->
     <!-- <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a> -->
     <!-- &middot; -->
@@ -199,6 +200,7 @@ Additional information
 - [x] Own Product Management
 - Frontend
 - - [x] Main Page design
+- - [x] Flash Sale Page design
 - - [x] User Dashboard design
 
 See the [open issues](https://github.com/zsoltdzsugan/bestshop/issues) for a full list of proposed features (and known issues).
