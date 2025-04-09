@@ -120,11 +120,11 @@
                     <x-input-error class="mt-2" :messages="$errors->get('sale_price')" />
                 </div>
                 <div>
-                    <x-date-picker label="Sale Start" id="sale_start" name="sale_start" class="mt-1 block w-full"/>
+                    <x-date-picker label="Sale Start" id="sale_start" name="sale_start" class="mt-1 block w-full" value="{{ old('sale_start', $product->sale_start) }}" />
                     <x-input-error class="mt-2" :messages="$errors->get('sale_start')" />
                 </div>
                 <div>
-                    <x-date-picker label="Sale End" id="sale_end" name="sale_end" class="mt-1 block w-full"/>
+                    <x-date-picker label="Sale End" id="sale_end" name="sale_end" class="mt-1 block w-full" value="{{ old('sale_start', $product->sale_end) }}" />
                     <x-input-error class="mt-2" :messages="$errors->get('sale_end')" />
                 </div>
                 <div>

@@ -3,12 +3,15 @@
     'name' => 'select_name',
     'selected' => null,
     'label' => 'Select Date',
+    'value' => null,
+    'format' => 'M d, Y',
 ])
+
 
 <div x-data="{
       datePickerOpen: false,
       datePickerValue: '',
-      datePickerFormat: 'M d, Y',
+      datePickerFormat: '{{ $format }}',
       datePickerMonth: '',
       datePickerYear: '',
       datePickerDay: '',
@@ -72,50 +75,74 @@
         let formattedMonthInNumber = ('0' + (parseInt(date.getMonth()) + 1)).slice(-2);
         let formattedYear = date.getFullYear();
 
-        return `${formattedYear}-${formattedMonthInNumber}-${formattedDate}`;
+        if (this.datePickerFormat === 'M d, Y') {
+          return `${formattedMonthShortName} ${formattedDate}, ${formattedYear}`;
+        }
+        if (this.datePickerFormat === 'MM-DD-YYYY') {
+          return `${formattedMonthInNumber}-${formattedDate}-${formattedYear}`;
+        }
+        if (this.datePickerFormat === 'DD-MM-YYYY') {
+          return `${formattedDate}-${formattedMonthInNumber}-${formattedYear}`;
+        }
+        if (this.datePickerFormat === 'YYYY-MM-DD') {
+          return `${formattedYear}-${formattedMonthInNumber}-${formattedDate}`;
+        }
+        if (this.datePickerFormat === 'D d M, Y') {
+          return `${formattedDay} ${formattedDate} ${formattedMonthShortName} ${formattedYear}`;
+        }
+
+        return `${formattedMonth} ${formattedDate}, ${formattedYear}`;
       },
     }" x-init="
-        currentDate = new Date();
-        if (datePickerValue) {
-            currentDate = new Date(Date.parse(datePickerValue));
+        let currentDate;
+        if ('{{ $value }}') {
+            // If value is provided, parse it as a date
+            currentDate = new Date('{{ $value }}');
+            if (isNaN(currentDate.getTime())) {
+                // If parsing fails, use current date
+                currentDate = new Date();
+            }
+        } else {
+            // If no value provided, use current date
+            currentDate = new Date();
         }
         datePickerMonth = currentDate.getMonth();
         datePickerYear = currentDate.getFullYear();
-        datePickerDay = currentDate.getDay();
-        datePickerValue = datePickerFormatDate( currentDate );
+        datePickerDay = currentDate.getDate();
+        datePickerValue = datePickerFormatDate(currentDate);
         datePickerCalculateDays();
     " x-cloak>
-    <div class="container px-4 py-2 mx-auto md:py-10">
+    <div class="container relative flex mt-1 w-full max-w-sm flex-col gap-1 text-on-surface dark:text-on-surface-dark">
         <div class="w-full mb-5">
             <label for="{{ $name }}" class="block mb-1 text-sm font-medium text-neutral-500">{{ $label }}</label>
             <div class="relative w-[17rem]">
-                <input id="{{ $id }}" name="{{ $name }}" x-ref="datePickerInput" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" x-on:keydown.escape="datePickerOpen=false" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md text-neutral-600 border-neutral-300 ring-offset-background placeholder:text-neutral-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Select date" readonly />
-                <div @click="datePickerOpen=!datePickerOpen; if(datePickerOpen){ $refs.datePickerInput.focus() }" class="absolute top-0 right-0 px-3 py-2 cursor-pointer text-neutral-400 hover:text-neutral-500">
+                <input x-ref="datePickerInput" id="{{ $id }}" name="{{ $name }}" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" x-on:keydown.escape="datePickerOpen=false" class="flex w-full h-10 px-3 w-full appearance-none rounded-radius border border-outline bg-surface-alt px-4 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:border-outline-dark dark:bg-surface-dark-alt dark:focus-visible:outline-primary-dark" placeholder="Select date" readonly />
+                <div @click="datePickerOpen=!datePickerOpen; if(datePickerOpen){ $refs.datePickerInput.focus() }" class="absolute top-0 right-0 px-3 py-2 cursor-pointer text-on-surface/75 dark:text-on-surface-dark/75 hover:brightness-75">
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 </div>
                 <div
                     x-show="datePickerOpen"
                     x-transition
                     @click.away="datePickerOpen = false"
-                    class="absolute top-0 left-0 max-w-lg p-4 mt-12 antialiased bg-white border rounded-lg shadow w-[17rem] border-neutral-200/70">
+                    class="z-20 absolute top-0 left-0 max-w-lg p-4 mt-12 antialiased bg-surface-alt dark:bg-surface-dark-alt border rounded-radius shadow w-[17rem] border-outline dark:border-outline-dark">
                     <div class="flex items-center justify-between mb-2">
                         <div>
-                            <span x-text="datePickerMonthNames[datePickerMonth]" class="text-lg font-bold text-gray-800"></span>
-                            <span x-text="datePickerYear" class="ml-1 text-lg font-normal text-gray-600"></span>
+                            <span x-text="datePickerMonthNames[datePickerMonth]" class="text-lg font-bold text-on-surface-strong dark:text-on-surface-dark-strong"></span>
+                            <span x-text="datePickerYear" class="ml-1 text-lg font-normal text-on-surface dark:text-on-surface-dark"></span>
                         </div>
                         <div>
-                            <button @click="datePickerPreviousMonth()" type="button" class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline hover:bg-gray-100">
-                                <svg class="inline-flex w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                            <button @click="datePickerPreviousMonth()" type="button" class="group inline-flex p-1 transition duration-100 ease-in-out rounded-radius cursor-pointer focus:outline-none focus:shadow-outline">
+                                <svg class="inline-flex w-6 h-6 text-on-surface dark:text-on-surface-dark group-hover:text-on-surface-strong dark:group-hover:text-on-surface-dark-strong" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                             </button>
-                            <button @click="datePickerNextMonth()" type="button" class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline hover:bg-gray-100">
-                                <svg class="inline-flex w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                            <button @click="datePickerNextMonth()" type="button" class="group inline-flex p-1 transition duration-100 ease-in-out rounded-radius cursor-pointer focus:outline-none focus:shadow-outline">
+                                <svg class="inline-flex w-6 h-6 text-on-surface dark:text-on-surface-dark group-hover:text-on-surface-strong dark:group-hover:text-on-surface-dark-strong" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                             </button>
                         </div>
                     </div>
                     <div class="grid grid-cols-7 mb-3">
                         <template x-for="(day, index) in datePickerDays" :key="index">
                             <div class="px-0.5">
-                                <div x-text="day" class="text-xs font-medium text-center text-gray-800"></div>
+                                <div x-text="day" class="text-xs font-medium text-center text-on-surface-strong dark:text-on-surface-dark-strong"></div>
                             </div>
                         </template>
                     </div>
@@ -129,11 +156,11 @@
                                     x-text="day"
                                     @click="datePickerDayClicked(day)"
                                     :class="{
-                                        'bg-neutral-200': datePickerIsToday(day) == true,
-                                        'text-gray-600 hover:bg-neutral-200': datePickerIsToday(day) == false && datePickerIsSelectedDate(day) == false,
-                                        'bg-neutral-800 text-white hover:bg-opacity-75': datePickerIsSelectedDate(day) == true
+                                        'bg-outline dark:bg-outline-dark text-on-surface-strong dark:text-on-surface-dark-strong': datePickerIsToday(day) == true,
+                                        'text-on-surface dark:text-on-surface-dark hover:bg-outline/75 dark:hover:bg-outline-dark/75': datePickerIsToday(day) == false && datePickerIsSelectedDate(day) == false,
+                                        'bg-primary dark:bg-primary-dark text-on-primary dark:text-on-primary-dark hover:bg-opacity-75': datePickerIsSelectedDate(day) == true
                                     }"
-                                    class="flex items-center justify-center text-sm leading-none text-center rounded-full cursor-pointer h-7 w-7"></div>
+                                    class="flex items-center justify-center text-sm leading-none text-center rounded-radius cursor-pointer h-7 w-7"></div>
                             </div>
                         </template>
                     </div>
