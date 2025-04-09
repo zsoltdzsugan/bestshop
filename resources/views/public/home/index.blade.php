@@ -70,14 +70,14 @@
                     </div>
                 </div>
                 <div>
-                    <x-primary-button>Check it out</x-primary-button>
+                    <x-button href="{{ route('flash-sale') }}">Check it out</x-button>
                 </div>
             </div>
         </div>
     </section>
     <section id="flash-sale-products">
         <!-- TODO:Dynamic products -->
-            <x-products-carousel :products="$products" />
+            <x-products-carousel :products="$flashSaleProducts" />
     </section>
     <section id="promo">
         <!-- TODO:Dynamic banner -->
@@ -118,18 +118,8 @@
     <section id="top-category-products">
         <!-- TODO:Dynamic product-cards -->
         <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 justify-center gap-8 justify-items-center">
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
-            <x-compact-product-card />
+            <!-- TODO:Make better compact product-cards -->
+            <x-product-card :product="$flashSaleProducts[0]" variant="compact"/>
         </div>
     </section>
 
@@ -242,7 +232,7 @@
         <!-- shipping support guarantee online paymnt -->
         <div class="flex w-full items-center gap-8 mt-6">
             <div class="border border-outline dark:border-outline-dark bg-surface dark:bg-surface-dark shadow-sm w-full text-center flex flex-col justify-center items-center">
-                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-8">
+                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-4">
                     <span class="material-symbols-outlined text-on-primary large-icon">
                         local_shipping
                     </span>
@@ -253,7 +243,7 @@
                 </div>
             </div>
             <div class="border border-outline dark:border-outline-dark bg-surface dark:bg-surface-dark shadow-sm w-full text-center flex flex-col justify-center items-center">
-                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-8">
+                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-4">
                     <span class="material-symbols-outlined text-on-primary large-icon">
                         support_agent
                     </span>
@@ -264,7 +254,7 @@
                 </div>
             </div>
             <div class="border border-outline dark:border-outline-dark bg-surface dark:bg-surface-dark shadow-sm w-full text-center flex flex-col justify-center items-center">
-                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-8">
+                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-4">
                     <span class="material-symbols-outlined text-on-primary large-icon">
                         sync_alt
                     </span>
@@ -275,7 +265,7 @@
                 </div>
             </div>
             <div class="border border-outline dark:border-outline-dark bg-surface dark:bg-surface-dark shadow-sm w-full text-center flex flex-col justify-center items-center">
-                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-8">
+                <div class="bg-primary dark:bg-primary-dark rounded-radius border border-outline dark:border-outline-dark shadow-sm flex items-center justify-center size-16 -translate-y-4">
                     <span class="material-symbols-outlined text-on-primary large-icon">
                         credit_card
                     </span>
@@ -289,54 +279,10 @@
     </section>
 
     @push('scripts')
+        <script src="/js/flashSaleCountdown.js"></script>
         <script>
-            function getTimeRemaining(targetDate) {
-                const now = new Date();
-                const timeLeft = targetDate - now;
-
-                if (timeLeft <= 0) {
-                    return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
-                }
-
-                return {
-                    days: Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutes: Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
-                    seconds: Math.floor((timeLeft % (1000 * 60)) / 1000),
-                    expired: false,
-                }
-            }
-
-            function updateCountDownDisplay(timeLeft) {
-                const dayElement = document.querySelector('.remaining-day');
-                const hourElement = document.querySelector('.remaining-hour');
-                const minuteElement = document.querySelector('.remaining-minute');
-                const secondElement = document.querySelector('.remaining-second');
-
-                dayElement.innerHTML = timeLeft.days;
-                hourElement.innerHTML = timeLeft.hours;
-                minuteElement.innerHTML = timeLeft.minutes;
-                secondElement.innerHTML = timeLeft.seconds;
-            }
-
-            function tick(targetDate, interval) {
-                const timeLeft = getTimeRemaining(targetDate);
-                updateCountDownDisplay(timeLeft);
-
-                if (timeLeft.expired) {
-                    clearInterval(interval);
-                }
-            }
-
-            function startCountDown(days) {
-                const targetDate = new Date();
-                targetDate.setDate(targetDate.getDate() + days);
-
-                tick(targetDate);
-                const interval = setInterval(() => tick(targetDate, interval), 1000);
-            }
-
-            startCountDown(1);
+            const targetDate = new Date("<?= $flashSaleEnd->sale_end ?>");
+            startCountdown(targetDate);
         </script>
     @endpush
 </x-public-layout>
