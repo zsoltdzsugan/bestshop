@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\BrandController;
+use App\Http\Controllers\Backend\Admin\FlashSaleController;
 use App\Http\Controllers\Backend\Admin\Product\ImageGalleryController;
 use App\Http\Controllers\Backend\Admin\Product\PendingController;
 use App\Http\Controllers\Backend\Admin\Product\VariantController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\Backend\Admin\UserController;
 use App\Http\Controllers\Backend\Category\CategoryController;
 use App\Http\Controllers\Backend\Category\ChildCategoryController;
 use App\Http\Controllers\Backend\Category\SubCategoryController;
-use App\Http\Controllers\Backend\Admin\FlashSaleController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:admin'])

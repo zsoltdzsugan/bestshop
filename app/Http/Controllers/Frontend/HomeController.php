@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\FlashSale;
-use App\Models\FlashSaleItem;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\View\View;
@@ -19,7 +18,7 @@ class HomeController extends Controller
         $flashSaleEnd = FlashSale::first();
         $flashSaleProducts = Product::whereHas('flashitems', function ($query) {
             $query->where('is_featured', 1)
-                  ->where('status', 1);
+                ->where('status', 1);
         })->get();
 
         $categories = Category::all();

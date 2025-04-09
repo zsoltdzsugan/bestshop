@@ -7,10 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FlashSale;
 use App\Models\FlashSaleItem;
 use App\Models\Product;
-use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use function Illuminate\Http\JsonResponse;
 
 class FlashSaleController extends Controller
 {
@@ -19,10 +16,10 @@ class FlashSaleController extends Controller
         $flashSaleDate = FlashSale::first();
 
         $products = Product::select('id', 'name', 'thumb_image')
-            ->where('is_approved' , 1)
+            ->where('is_approved', 1)
             ->where('status', 1)
             ->get()
-            ->map(fn($p) => [
+            ->map(fn ($p) => [
                 'id' => $p->id,
                 'name' => $p->name,
                 'image' => $p->thumb_image,
@@ -39,8 +36,8 @@ class FlashSaleController extends Controller
         ]);
 
         FlashSale::updateOrCreate(
-            [ 'id' => 1, ],
-            [ 'sale_end' => $request->sale_end],
+            ['id' => 1],
+            ['sale_end' => $request->sale_end],
         );
 
         return redirect()->route('admin.flash-sale.index')->with('status', 'flase-sale-updated');
@@ -50,15 +47,15 @@ class FlashSaleController extends Controller
     {
         $request->validate([
             'product' => ['required', 'unique:flash_sale_items,product_id,except,id'],
-        ],[
+        ], [
             'product.unique' => 'The product is already in flash sale.',
         ]);
 
         $flashSaleItem = new FlashSaleItem;
         $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = FlashSale::first()->id;
-        $flashSaleItem->is_featured = $request->is_featured == "on" ? 1 : 0;
-        $flashSaleItem->status = $request->status == "on" ? 1 : 0;
+        $flashSaleItem->is_featured = $request->is_featured == 'on' ? 1 : 0;
+        $flashSaleItem->status = $request->status == 'on' ? 1 : 0;
         $flashSaleItem->save();
 
         return redirect()->route('admin.flash-sale.index')->with('status', 'flase-sale-item-added');

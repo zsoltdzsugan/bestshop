@@ -103,7 +103,7 @@ class ProductDataTable extends DataTable
             ->parameters([
                 'dom' => 'Bfrtip',
                 'buttons' => [
-                    'export', 'print', 'reload'
+                    'export', 'print', 'reload',
                 ],
                 'responsive' => true,
                 'autoWidth' => true,

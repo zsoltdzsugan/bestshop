@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class FlashSaleItemDataTable extends DataTable
@@ -17,7 +15,7 @@ class FlashSaleItemDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<FlashSaleItem> $query Results from query() method.
+     * @param  QueryBuilder<FlashSaleItem>  $query  Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -26,7 +24,7 @@ class FlashSaleItemDataTable extends DataTable
                 return view('admin.flash-sale.partials.actions', compact('flashSaleItem'));
             })
             ->addColumn('product_name', function ($query) {
-                return '<a href="'.route("admin.product.edit", $query->product->id).'">'.$query->product->name.'</a>';
+                return '<a href="'.route('admin.product.edit', $query->product->id).'">'.$query->product->name.'</a>';
             })
             ->addColumn('featured', function ($query) {
                 $statusIcon = $query->is_featured == 1
@@ -62,19 +60,19 @@ class FlashSaleItemDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('flassaleitem-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('flassaleitem-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -88,10 +86,10 @@ class FlashSaleItemDataTable extends DataTable
             Column::make('featured'),
             Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -100,6 +98,6 @@ class FlashSaleItemDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'FlasSaleItem_' . date('YmdHis');
+        return 'FlasSaleItem_'.date('YmdHis');
     }
 }
