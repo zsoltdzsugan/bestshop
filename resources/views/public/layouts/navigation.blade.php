@@ -2,7 +2,7 @@
     <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="max-w-7xl h-auto mx-auto flex items-center justify-between gap-4 aria-label="main-menu">
         <div class="flex gap-4 items-center">
 
-            <div x-data="{ sidebarIsOpen: false, mainIsOpen: false, subIsOpen:false }" x-on:click.outside="sidebarIsOpen = false" x-on:keydown.esc.window="sidebarIsOpen = false" class="z-50">
+            <div x-data="{ sidebarIsOpen: false, mainIsOpen: false, subIsOpen:false }" x-on:click.outside="sidebarIsOpen = false" x-on:keydown.esc.window="sidebarIsOpen = false" class="z-50" x-cloak>
                 <!-- toggle button -->
                 <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-radius bg-primary dark:bg-primary-dark px-4 py-1.5 text-sm font-medium tracking-wide transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2" x-on:click="sidebarIsOpen = ! sidebarIsOpen">
                     <svg class="size-5 text-on-primary dark:text-on-primary-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -13,7 +13,7 @@
                     <!-- overlay -->
                     <div x-cloak x-show="sidebarIsOpen" x-bind:class="sidebarIsOpen ? 'display:block' : 'display:none'" @click="sidebarIsOpen = false" id="sidenavOverlay" class="z-10 absolute top-0 left-0 w-full h-full bg-black opacity-50 transition duration-150 ease-in-out"></div>
 
-                <nav x-cloak x-show="sidebarIsOpen" x-trap="sidebarIsOpen" class="absolute top-0 fixed left-0 z-50 flex h-svh w-80 shrink-0 flex-col bg-surface p-4 transition-transform duration-300 dark:bg-surface-dark" aria-label="side-navigation" x-transition:enter="transition duration-200 ease-out" x-transition:enter-end="translate-x-0" x-transition:enter-start="-translate-x-80" x-transition:leave="transition ease-in duration-200 " x-transition:leave-end="-translate-x-80" x-transition:leave-start="translate-x-0">
+                <nav x-cloak x-show="sidebarIsOpen" x-trap="sidebarIsOpen" class=" top-0 fixed left-0 z-50 flex h-svh w-80 shrink-0 flex-col bg-surface p-4 transition-transform duration-300 dark:bg-surface-dark" aria-label="side-navigation" x-transition:enter="transition duration-200 ease-out" x-transition:enter-end="translate-x-0" x-transition:enter-start="-translate-x-80" x-transition:leave="transition ease-in duration-200 " x-transition:leave-end="-translate-x-80" x-transition:leave-start="translate-x-0">
                     <!-- sidebar header -->
                     <div class="flex items-center justify-between" id="sidenavHeader">
                         <h3 class="text-lg font-medium text-on-surface-strong dark:text-on-surface-dark-strong">All Products</h3>
@@ -48,13 +48,13 @@
                 </nav>
             </div>
 
-
-
-
             <!-- Desktop Menu -->
             <ul class="hidden items-center gap-4 shrink-0 sm:flex">
-                <x-menu-item :href="route('home')" active>
-                    Products
+                <x-menu-item :href="route('home')" :active="request()->routeIs('home')">
+                    Home
+                </x-menu-item>
+                <x-menu-item :href="route('flash-sale')" :active="request()->routeIs('flash-sale')">
+                    Flash Sale
                 </x-menu-item>
                 <x-menu-item :href="route('home')">
                     Contact
@@ -106,25 +106,25 @@
                             };
                         @endphp
 
-                        <x-primary-button :href="route($dashboard)" class="">
+                        <x-button :href="route($dashboard)">
                             Dashboard
-                        </x-primary-button>
+                        </x-button>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-secondary-button :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <x-button variant="danger" :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                             Logout
-                            </x-secondary-button>
+                            </x-button>
                         </form>
                     @else
-                        <x-primary-button :href="route('login')">
+                        <x-button :href="route('login')">
                         Login
-                        </x-primary-button>
+                        </x-button>
 
-                        <x-secondary-button :href="route('register')">
+                        <x-button variant="secondary" :href="route('register')">
                         Register
-                        </x-secondary-button>
+                        </x-button>
                     @endauth
                 </div>
             @endif

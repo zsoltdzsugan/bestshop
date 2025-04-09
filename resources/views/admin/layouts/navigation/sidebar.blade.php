@@ -51,6 +51,7 @@
                         :active="request()->routeIs('admin.slider.*')">
                         Home Carousel
                     </x-nested-nav-link>
+
                     <x-dummy-nav-link class="pl-0 font-semibold">
                         Categories
                     </x-dummy-nav-link>
@@ -68,6 +69,15 @@
                         :href="route('admin.child-category.index')"
                         :active="request()->routeIs('admin.child-category.*')">
                         Child Categories
+                    </x-nested-nav-link>
+
+                    <x-dummy-nav-link class="pl-0 font-semibold">
+                        Sale
+                    </x-dummy-nav-link>
+                    <x-nested-nav-link
+                        :href="route('admin.flash-sale.index')"
+                        :active="request()->routeIs('admin.flash-sale.*')">
+                        Flash Sale
                     </x-nested-nav-link>
                 </ul>
 
