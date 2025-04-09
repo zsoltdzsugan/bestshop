@@ -28,6 +28,11 @@ class Product extends Model
         return $this->hasMany(Variant::class);
     }
 
+    public function flashitems(): HasMany
+    {
+        return $this->hasMany(FlashSaleItem::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
