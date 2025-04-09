@@ -6,7 +6,7 @@
         </div>
         <!-- Search -->
         <div class="relative flex mx-auto w-full max-w-xl flex-col gap-1 bg-surface dark:bg-surface-dark text-on-surface dark:text-on-surface-dark p-1">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-on-surface/50 dark:text-on-surface-dark/50">
+            <svg class="absolute top-3 left-2 size-6 text-on-surface dark:text-on-surface-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="absolute left-2.5 top-1/2 size-5 -translate-y-1/2 text-on-surface/50 dark:text-on-surface-dark/50">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
             <input type="search" name="search" placeholder="Search" aria-label="search" class="w-full rounded-radius bg-surface py-2.5 pl-10 pr-2 text-sm focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-75 dark:bg-surface-dark dark:focus-visible:outline-primary-dark" />
@@ -21,13 +21,13 @@
             </div>
         </div>
         <div class="flex gap-6 items-center text-on-surface dark:text-on-surface-dark">
-            <span class="material-symbols-outlined large-icon p-2 cursor-pointer">
+            <span class="material-symbols-outlined large-icon p-2 cursor-pointer transition-colors duration-200 hover:text-danger">
             favorite
             </span>
-            <span class="material-symbols-outlined large-icon p-2 cursor-pointer">
+            <span class="material-symbols-outlined large-icon p-2 cursor-pointer transition-colors duration-200 hover:text-warning">
             notifications
             </span>
-            <span class="material-symbols-outlined large-icon p-2 cursor-pointer">
+            <span class="material-symbols-outlined large-icon p-2 cursor-pointer transition-colors duration-200 hover:text-primary dark:hover:text-primary-dark">
             shopping_bag
             </span>
         </div>
