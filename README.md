@@ -20,10 +20,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="public/assets/bs.png" alt="Logo" width="360" height="160">
-    <h3 align="center">bestshop — ecommerce</h3>
-  </a>
+    <a href="https://github.com/zsoltdzsugan/bestshop">
+        <img src="public/assets/bs.png" alt="Logo" width="360" height="160">
+    </a>
 
   <p align="center">
     BestShop is a multi-vendor e-commerce platform built with Laravel.
