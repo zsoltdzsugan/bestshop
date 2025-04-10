@@ -21,7 +21,7 @@
 <br />
 <div align="center">
     <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="public/assets/bs.png" alt="Logo" width="260" height="160">
+    <img src="public/assets/bs.png" alt="Logo" width="360" height="160">
     <h3 align="center">bestshop — ecommerce</h3>
   </a>
 
