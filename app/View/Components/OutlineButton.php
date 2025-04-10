@@ -19,7 +19,7 @@ class OutlineButton extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $variant = 'primary', bool $disabled = false, ?string $href = null, ?string $size = 'md')
+    public function __construct(string $variant = 'primary', bool $disabled = false, ?string $href = null, ?string $size = 'sm')
     {
         $this->variant = $variant;
         $this->disabled = $disabled;

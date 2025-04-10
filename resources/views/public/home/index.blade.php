@@ -33,7 +33,7 @@
         }
     </style>
     @endpush
-    <section id="carousel">
+    <section id="carousel" class="-mb-0">
         <x-slides-carousel :slides="$sliders" />
     </section>
     <section id="flash-sale">
@@ -41,7 +41,7 @@
         <div class="relative flex bg-surface px-4 text-on-surface-strong dark:bg-surface-dark dark:text-on-surface-dark-strong">
             <div class="w-full flex flex-wrap items-center px-6 gap-2 h-auto justify-between">
                 <div>
-                    <h2 class="text-4xl text-on-secondary">Flash Sale</h2>
+                    <h2 class="text-4xl text-on-surface dark:text-on-surface-dark">Flash Sale</h2>
                 </div>
                 <div class="flex gap-4 py-6">
                     <div class="flex flex-col py-2 px-2 justify-center min-w-24 items-center gap-2 bg-surface-alt dark:bg-surface-dark-alt">

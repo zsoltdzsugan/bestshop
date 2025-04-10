@@ -64,7 +64,7 @@
                 Subscribe
             </x-primary-button>
             <p class="text-md text-on-surface dark:text-on-surface-dark -mb-4">We accept Safe Payment from:</p>
-            <img src="{{ asset('storage/home/cards/credit.png') }}" class="h-auto w-36">
+            <img src="{{ asset('/assets/credit.png') }}" class="h-auto w-36">
         </div>
     </div>
     <div class="text-on-surface dark:text-on-surface-dark flex items-center justify-center text-center py-1 shadow-sm">

@@ -14,7 +14,7 @@
 <article class="group flex rounded-radius h-full flex-col overflow-hidden bg-surface text-on-surface dark:bg-surface-dark dark:text-on-surface-dark">
     <!-- Image -->
     <div class="relative overflow-hidden {{ $imageContainerClasses() }}">
-        <img src="{{ asset('storage/'.$product->thumb_image) }}" class="object-cover w-full h-auto transition duration-700 ease-out group-hover:scale-105" alt="{{ $product->name }}" />
+        <img src="{{ asset('storage/'.$product->thumb_image) }}" class="object-cover w-full h-full transition duration-700 ease-out group-hover:scale-105" alt="{{ $product->name }}" />
         {{-- TODO: to component --}}
         @if ($product->is_top)
             <div class="font-bold group-hover:opacity-0 transition-all duration-300 ease-in-out absolute max-w-12 w-full top-2 left-2 p-1.5 bg-primary dark:bg-primary-dark text-on-primary dark:text-on-primary-dark flex items-center justify-center text-center">Top</div>

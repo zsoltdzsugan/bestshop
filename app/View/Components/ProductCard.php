@@ -24,8 +24,8 @@ class ProductCard extends Component
     public function imageContainerClasses(): string
     {
         $variants = [
-            'compact' => 'w-full',
-            'default' => 'h-44 md:h-full',
+            'compact' => 'w-full max-h-32',
+            'default' => 'h-44 md:h-auto max-h-64',
         ];
 
         return $variants[$this->variant] ?? $variants['default'];

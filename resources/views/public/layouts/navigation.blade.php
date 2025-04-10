@@ -113,18 +113,18 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-button variant="danger" :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <x-outline-button variant="danger" class="brightness-75" :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                             Logout
-                            </x-button>
+                            </x-outline-button>
                         </form>
                     @else
                         <x-button :href="route('login')">
                         Login
                         </x-button>
 
-                        <x-button variant="secondary" :href="route('register')">
+                        <x-outline-button variant="secondary" :href="route('register')">
                         Register
-                        </x-button>
+                        </x-outline-button>
                     @endauth
                 </div>
             @endif
