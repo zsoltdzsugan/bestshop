@@ -21,7 +21,7 @@
 <br />
 <div align="center">
     <a href="https://github.com/zsoltdzsugan/bestshop">
-        <img src="public/assets/bs.png" alt="Logo" width="360" height="160">
+        <img src="public/assets/bs.png" alt="Logo" width="500" height="160">
     </a>
 
   <p align="center">
@@ -273,7 +273,7 @@ Project Link: [https://github.com/zsoltdzsugan/bestshop.git](https://github.com/
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: assets/home_page_l.png
+[product-screenshot]: public/assets/home_page_l.png
 [blade.com]: https://img.shields.io/badge/Blade-DD0031?style=for-the-badge&logo=blade&logoColor=white
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
