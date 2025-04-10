@@ -70,7 +70,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]]()
+[![Product Name Screen Shot 1][product-screenshot-1]]()
 This project is currently in development.
 The site is designed as a multi-vendor ecommerce site (similar to amazon), it provides a seamless online shopping experience.
 
@@ -274,6 +275,7 @@ Project Link: [https://github.com/zsoltdzsugan/bestshop.git](https://github.com/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: public/assets/home_page_l.png
+[product-screenshot-1]: public/assets/admin_panel.png
 [blade.com]: https://img.shields.io/badge/Blade-DD0031?style=for-the-badge&logo=blade&logoColor=white
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
