@@ -22,6 +22,13 @@
             <div class="flex flex-col gap-2 overflow-y-auto pb-6 hide-scrollbar">
 
                 <x-nav-link
+                    :href="route('home')"
+                    :active="request()->routeIs('home')"
+                    icon="Login">
+                    Public site
+                </x-nav-link>
+
+                <x-nav-link
                     :href="route('admin.dashboard')"
                     :active="request()->routeIs('admin.dashboard')"
                     icon="dashboard">
@@ -164,7 +171,7 @@
             </div>
 
             <!-- Top fade -->
-            <div class="fixed top-28 left-0 z-30 mt-1 h-10 w-64 pointer-events-none bg-surface-alt dark:bg-surface-dark-alt [mask-image:linear-gradient(to_bottom,var(--color-surface-dark-alt),transparent)]"></div>
+            <div class="fixed top-28 left-0 z-30 h-10 w-64 pointer-events-none bg-surface-alt dark:bg-surface-dark-alt [mask-image:linear-gradient(to_bottom,var(--color-surface-dark-alt),transparent)]"></div>
 
             <!-- Bottom fade -->
             <div class="fixed bottom-0 left-0 z-30 h-10 w-64 pointer-events-none bg-surface dark:bg-surface-dark-alt [mask-image:linear-gradient(to_top,var(--color-surface-dark-alt),transparent)]"></div>
