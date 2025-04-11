@@ -106,9 +106,9 @@
                             };
                         @endphp
 
-                        <x-button :href="route($dashboard)">
+                        <x-ghost-button variant="" :href="route($dashboard)">
                             Dashboard
-                        </x-button>
+                        </x-ghost-button>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -118,13 +118,13 @@
                             </x-outline-button>
                         </form>
                     @else
-                        <x-button :href="route('login')">
+                        <x-ghost-button :href="route('login')">
                         Login
-                        </x-button>
+                        </x-ghost-button>
 
-                        <x-outline-button variant="secondary" :href="route('register')">
+                        <x-ghost-button variant="inverse" :href="route('register')">
                         Register
-                        </x-outline-button>
+                        </x-ghost-button>
                     @endauth
                 </div>
             @endif
